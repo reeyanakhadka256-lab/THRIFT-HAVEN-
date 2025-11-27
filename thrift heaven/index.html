@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thrift Haven | Sustainable Thrifted Fashion</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* 🍷 LUXURY BURGUNDY THEME */
+
+    :root {
+      --primary: #7a0026;         /* deep rich burgundy */
+      --primary-light: #f5e4ea;   /* soft rose blush */
+      --accent: #c59774;          /* warm gold highlight */
+
+      --dark: #2b0d14;
+      --text-muted: #8e6272;
+
+      --bg: #faf6f7;
+      --white: #ffffff;
+      --border: #e7c7d2;
+
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --transition: 0.25s ease;
+      --shadow-soft: 0 10px 30px rgba(122, 0, 38, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top left, #f5e4ea 0%, #faf6f7 50%, #ffffff 100%);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* HEADER */
+
+    header {
+      width: 100%;
+      background: rgba(250, 246, 247, 0.9);
+      backdrop-filter: blur(14px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 18px rgba(122, 0, 38, 0.2);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--primary);
+      font-family: 'Poppins', sans-serif;
+      letter-spacing: 0.02em;
+    }
+
+    .logo-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: var(--primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--primary);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      position: relative;
+      padding-bottom: 0.2rem;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--primary);
+      transition: width var(--transition);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 0.55rem 1.3rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid transparent;
+      cursor: pointer;
+      background: none;
+      transition: background var(--transition), color var(--transition),
+                  border var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #7a0026, #4d0018);
+      color: var(--white);
+      box-shadow: 0 12px 28px rgba(122, 0, 38, 0.4);
+      border: none;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 40px rgba(122, 0, 38, 0.55);
+    }
+
+    .btn-outline {
+      border-color: var(--primary);
+      background: var(--white);
+      color: var(--primary);
+    }
+
+    .btn-outline:hover {
+      background: var(--primary-light);
+    }
+
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      background: var(--white);
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+
+    .icon-btn:hover {
+      background: var(--primary-light);
+      box-shadow: 0 8px 18px rgba(122, 0, 38, 0.2);
+      transform: translateY(-1px);
+    }
+
+    .icon-btn span {
+      font-size: 1rem;
+    }
+
+    .nav-toggle {
+      display: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      background: var(--white);
+    }
+
+    .nav-toggle span {
+      font-size: 1.2rem;
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 2.5rem 0 2.5rem;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.8rem;
+      border-radius: 999px;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-bottom: 0.7rem;
+    }
+
+    .hero-title {
+      font-size: 2.4rem;
+      line-height: 1.2;
+      margin-bottom: 0.7rem;
+      letter-spacing: -0.03em;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .hero-title span {
+      color: var(--primary);
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      max-width: 520px;
+    }
+
+    .hero-cta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.4rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .hero-meta strong {
+      display: block;
+      font-size: 1rem;
+      color: var(--dark);
+    }
+
+    .hero-right {
+      position: relative;
+    }
+
+    .hero-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 1.6rem;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-item {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      position: relative;
+      background: #ddd;
+      height: 130px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .hero-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+    }
+
+    .hero-label {
+      position: absolute;
+      left: 0.8rem;
+      bottom: 0.8rem;
+      background: rgba(0,0,0,0.7);
+      color: #fff;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.85rem;
+    }
+
+    .hero-pill {
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 500;
+      font-size: 0.8rem;
+    }
+
+    .hero-saving {
+      text-align: right;
+      cursor: pointer;
+      border-radius: 12px;
+      padding: 0.4rem 0.6rem;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+
+    .hero-saving span {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .hero-saving strong {
+      font-size: 1.2rem;
+      color: var(--primary);
+    }
+
+    .hero-saving:hover {
+      background: var(--primary-light);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(122, 0, 38, 0.2);
+    }
+
+    /* SECTIONS */
+
+    section {
+      padding: 1rem 0 2.5rem;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-header h2 {
+      font-size: 1.4rem;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .section-header p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 400px;
+    }
+
+    /* PRODUCTS */
+
+    .category-block {
+      margin-bottom: 2rem;
+    }
+
+    .category-title {
+      font-size: 1.1rem;
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 0.6rem;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .product-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 0.8rem;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      box-shadow: var(--shadow-soft);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .product-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(122, 0, 38, 0.25);
+    }
+
+    .product-image {
+      border-radius: var(--radius-md);
+      background: #ddd;
+      height: 170px;
+      overflow: hidden;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .product-details {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .product-title {
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .product-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .product-price {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .product-badge {
+      font-size: 0.72rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .product-actions {
+      display: flex;
+      gap: 0.4rem;
+      margin-top: 0.35rem;
+    }
+
+    .cart-toggle {
+      flex: 1;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 0.25rem 0.6rem;
+      font-size: 0.8rem;
+      background: var(--white);
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: background var(--transition), color var(--transition),
+                  border var(--transition), transform var(--transition);
+    }
+
+    .cart-toggle.in-cart {
+      background: var(--primary);
+      color: var(--white);
+      border-color: var(--primary);
+      transform: translateY(-1px);
+    }
+
+    /* CART SIDE PANEL */
+
+    .side-panel {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      display: none;
+      align-items: flex-start;
+      justify-content: flex-end;
+      z-index: 2000;
+      padding: 70px 16px 16px;
+    }
+
+    .side-panel.open {
+      display: flex;
+    }
+
+    .side-inner {
+      width: 100%;
+      max-width: 320px;
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid var(--border);
+      padding: 1rem 1.1rem;
+    }
+
+    .side-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .side-header h3 {
+      font-size: 1rem;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .side-items {
+      list-style: none;
+      margin: 0.4rem 0;
+      padding: 0;
+      font-size: 0.85rem;
+      max-height: 260px;
+      overflow-y: auto;
+    }
+
+    .side-items li {
+      padding: 0.35rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      gap: 0.4rem;
+    }
+
+    .side-empty {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .side-close-btn {
+      border: none;
+      background: transparent;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .side-total {
+      margin-top: 0.6rem;
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    #cartCount {
+      font-size: 0.85rem;
+    }
+
+    /* AUTH MODAL (LOGIN / REGISTER / FORGOT) */
+
+    #authModal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2100;
+      padding: 1rem;
+    }
+
+    #authModal.open {
+      display: flex;
+    }
+
+    .auth-box {
+      width: 100%;
+      max-width: 380px;
+      background: #ffffff;
+      border-radius: 18px;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.25);
+      border: 1px solid var(--border);
+      padding: 1.6rem 1.8rem;
+    }
+
+    .auth-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .auth-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+    }
+
+    .auth-close {
+      border: none;
+      background: transparent;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .auth-tabs {
+      display: flex;
+      gap: 0.4rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .auth-tab {
+      flex: 1;
+      padding: 0.4rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.85rem;
+      background: var(--bg);
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .auth-tab.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .auth-form {
+      display: none;
+      font-size: 0.88rem;
+    }
+
+    .auth-form.active {
+      display: block;
+    }
+
+    .auth-form label {
+      display: block;
+      font-size: 0.82rem;
+      margin-bottom: 0.25rem;
+      color: var(--dark);
+      font-weight: 500;
+    }
+
+    .auth-form input {
+      width: 100%;
+      padding: 0.6rem 0.75rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      margin-bottom: 0.7rem;
+      font-size: 0.85rem;
+      background: #faf6f7;
+      outline: none;
+    }
+
+    .auth-form input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 8px rgba(122,0,38,0.25);
+    }
+
+    .auth-form button {
+      width: 100%;
+      padding: 0.7rem;
+      border-radius: 999px;
+      border: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      background: linear-gradient(135deg, #7a0026, #4d0018);
+      color: #fff;
+      box-shadow: 0 10px 25px rgba(122,0,38,0.35);
+      margin-top: 0.4rem;
+    }
+
+    .auth-footer-text {
+      font-size: 0.8rem;
+      text-align: center;
+      margin-top: 0.6rem;
+      color: var(--text-muted);
+    }
+
+    .auth-footer-text a {
+      color: var(--primary);
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    /* FOOTER – SAME STYLE AS OTHER PAGES */
+
+    footer {
+      background: #3a0010;
+      color: #f5e4ea;
+      margin-top: 1.5rem;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) repeat(3, minmax(0, 1fr));
+      gap: 1.8rem;
+      padding: 2rem 0 1.8rem;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .footer-logo-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .footer-logo span {
+      font-weight: 600;
+      font-size: 1.1rem;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .footer-top p {
+      font-size: 0.83rem;
+      color: #f0d3df;
+      max-width: 280px;
+    }
+
+    .footer-heading {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.7rem;
+    }
+
+    .footer-links {
+      list-style: none;
+      font-size: 0.83rem;
+      color: #f7e1eb;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .footer-links a {
+      color: inherit;
+      opacity: 0.85;
+      transition: opacity var(--transition), transform var(--transition);
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+      transform: translateX(2px);
+    }
+
+    .social-row {
+      display: flex;
+      gap: 0.4rem;
+      margin-top: 0.7rem;
+    }
+
+    .social-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    .footer-bottom {
+      padding: 0.9rem 0 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.78rem;
+      color: #f0d3df;
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 960px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-right {
+        order: -1;
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .footer-top {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        position: fixed;
+        inset: 60px 0 auto 0;
+        background: rgba(250, 246, 247, 0.98);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.8rem 1.25rem 1rem;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        transform: translateY(-120%);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform var(--transition), opacity var(--transition);
+      }
+
+      nav.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .header-actions {
+        gap: 0.5rem;
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-badge">TH</div>
+        Thrift Haven
+      </a>
+
+      <nav id="mainNav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn" id="cartButton" aria-label="View cart">
+          <span id="cartCount">🛒</span>
+        </button>
+        <button class="btn btn-primary" id="openAuth">Sign In</button>
+      </div>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span>☰</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-left">
+          <div class="hero-tag">
+            <span>♻</span> Thrift. Save. Repeat.
+          </div>
+          <h1 class="hero-title">
+            Discover handpicked thrifted gems <span>without the hassle.</span>
+          </h1>
+          <p class="hero-subtitle">
+            Shop pre-loved fashion, curated by style. Every order you place keeps quality pieces in circulation and reduces fashion waste.
+          </p>
+
+          <div class="hero-cta">
+            <button class="btn btn-primary" id="startThriftingBtn">Start Thrifting</button>
+            <button class="btn btn-outline" id="browseNewBtn">Browse new arrivals</button>
+          </div>
+
+          <div class="hero-meta">
+            <div>
+              <strong>10k+ items</strong>
+              curated from trusted sellers.
+            </div>
+            <div>
+              <strong>4.9★ rating</strong>
+              from sustainable shoppers.
+            </div>
+            <div>
+              <strong>CO₂ saved</strong>
+              with every thrifted outfit.
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT SIDE TILES -->
+        <div class="hero-right">
+          <div class="hero-card">
+            <div class="hero-grid">
+              <div class="hero-item" data-target="vintage-denim">
+                <img src="https://images.pexels.com/photos/4277504/pexels-photo-4277504.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Vintage denim" />
+                <div class="hero-label">Vintage denim</div>
+              </div>
+
+              <div class="hero-item" data-target="statement-bags">
+                <img src="https://images.pexels.com/photos/6150420/pexels-photo-6150420.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Statement bags" />
+                <div class="hero-label">Statement bags</div>
+              </div>
+
+              <div class="hero-item" data-target="curated-shirts">
+                <img src="https://images.pexels.com/photos/7671101/pexels-photo-7671101.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Curated shirts" />
+                <div class="hero-label">Curated shirts</div>
+              </div>
+
+              <div class="hero-item" data-target="capsule-picks">
+                <img src="https://images.pexels.com/photos/2983462/pexels-photo-2983462.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Capsule picks" />
+                <div class="hero-label">Capsule picks</div>
+              </div>
+            </div>
+
+            <div class="hero-stats">
+              <div class="hero-pill">Over 2,400kg of clothing kept from landfill</div>
+              <div class="hero-saving" id="savingsBlock">
+                <span>Average saving per order</span>
+                <strong>£38</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED DROPS WITH 4 CATEGORIES -->
+    <section id="featured">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2>Featured drops</h2>
+            <p>Browse our latest edits – organised by how you actually shop.</p>
+          </div>
+          <a href="shop.html" class="btn btn-outline">View full collection</a>
+        </div>
+
+        <!-- Vintage denim -->
+        <div class="category-block" id="vintage-denim">
+          <h3 class="category-title">Vintage denim</h3>
+          <div class="products-grid">
+            <article class="product-card" data-id="denim-jacket-90s" data-title="90s Oversized Denim Jacket" data-price="32">
+              <div class="product-image">
+                <img src="https://images.pexels.com/photos/7691088/pexels-photo-7691088.jpeg?auto=compress&cs=tinysrgb&w=600" alt="90s denim jacket">
+              </div>
+              <div class="product-details">
+                <div class="product-title">90s Oversized Denim Jacket</div>
+                <div class="product-meta">
+                  <span class="product-price">£32</span>
+                  <span class="product-badge">Only 1 left</span>
+                </div>
+                <div class="product-meta">
+                  <span>Size M • Faded blue</span>
+                  <span>4.9★</span>
+                </div>
+                <div class="product-actions">
+                  <button type="button" class="cart-toggle">Add to cart</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-id="straight-leg-denim" data-title="Straight-Leg Vintage Denim" data-price="24">
+              <div class="product-image">
+                <img src="https://images.pexels.com/photos/7671157/pexels-photo-7671157.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Vintage straight leg denim">
+              </div>
+              <div class="product-details">
+                <div class="product-title">Straight-Leg Vintage Denim</div>
+                <div class="product-meta">
+                  <span class="product-price">£24</span>
+                  <span class="product-badge">Best seller</span>
+                </div>
+                <div class="product-meta">
+                  <span>Size 10 • Mid wash</span>
+                  <span>4.8★</span>
+                </div>
+                <div class="product-actions">
+                  <button type="button" class="cart-toggle">Add to cart</button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Statement bags -->
+        <div class="category-block" id="statement-bags">
+          <h3 class="category-title">Statement bags</h3>
+          <div class="products-grid">
+            <article class="product-card" data-id="structured-mini-bag" data-title="Structured Mini Shoulder Bag" data-price="26">
+              <div class="product-image">
+                <img src="https://images.pexels.com/photos/7671166/pexels-photo-7671166.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Structured mini bag">
+              </div>
+              <div class="product-details">
+                <div class="product-title">Structured Mini Shoulder Bag</div>
+                <div class="product-meta">
+                  <span class="product-price">£26</span>
+                  <span class="product-badge">New in</span>
+                </div>
+                <div class="product-meta">
+                  <span>Faux leather • Black</span>
+                  <span>4.9★</span>
+                </div>
+                <div class="product-actions">
+                  <button type="button" class="cart-toggle">Add to cart</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-id="croissant-bag" data-title="Chocolate Croissant Bag" data-price="21">
+              <div class="product-image">
+                <img src="https://images.pexels.com/photos/9884360/pexels-photo-9884360.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Croissant bag">
+              </div>
+              <div class="product-details">
+                <div class="product-title">Chocolate Croissant Bag</div>
+                <div class="product-meta">
+                  <span class="product-price">£21</span>
+                  <span class="product-badge">Editor’s pick</span>
+                </div>
+                <div class="product-meta">
+                  <span>Brown • Shoulder strap</span>
+                  <span>4.7★</span>
+                </div>
+                <div class="product-actions">
+                  <button type="button" class="cart-toggle">Add to cart</button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Curated shirts -->
+        <div class="category-block" id="curated-shirts">
+          <h3 class="category-title">Curated shirts</h3>
+          <div class="products-grid">
+            <article class="product-card" data-id="linen-relaxed-shirt" data-title="Relaxed Linen Shirt" data-price="19">
+              <div class="product-image">
+                <img src="https://images.pexels.com/photos/7671162/pexels-photo-7671162.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Relaxed linen shirt">
+              </div>
+              <div class="product-details">
+                <div class="product-title">Relaxed Linen Shirt</div>
+                <div class="product-meta">
+                  <span class="product-price">£19</span>
+                  <span class="product-badge">Everyday</span>
+                </div>
+                <div class="product-meta">
+                  <span>Size M • Off white</span>
+                  <span>4.8★</span>
+                </div>
+                <div class="product-actions">
+                  <button type="button" class="cart-toggle">Add to cart</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-id="striped-shirt" data-title="Striped Boxy Shirt" data-price="18">
+              <div class="product-image">
+                <img src="https://images.pexels.com/photos/7671156/pexels-photo-7671156.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Striped shirt">
+              </div>
+              <div class="product-details">
+                <div class="product-title">Striped Boxy Shirt</div>
+                <div class="product-meta">
+                  <span class="product-price">£18</span>
+                  <span class="product-badge">Weekend</span>
+                </div>
+                <div class="product-meta">
+                  <span>Size S • Cotton</span>
+                  <span>4.6★</span>
+                </div>
+                <div class="product-actions">
+                  <button type="button" class="cart-toggle">Add to cart</button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Capsule picks -->
+        <div class="category-block" id="capsule-picks">
+          <h3 class="category-title">Capsule picks</h3>
+          <div class="products-grid">
+            <article class="product-card" data-id="neutral-coat" data-title="Neutral Wool Blend Coat" data-price="48">
+              <div class="product-image">
+                <img src="https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Neutral coat">
+              </div>
+              <div class="product-details">
+                <div class="product-title">Neutral Wool Blend Coat</div>
+                <div class="product-meta">
+                  <span class="product-price">£48</span>
+                  <span class="product-badge">Capsule</span>
+                </div>
+                <div class="product-meta">
+                  <span>Size M • Timeless fit</span>
+                  <span>5.0★</span>
+                </div>
+                <div class="product-actions">
+                  <button type="button" class="cart-toggle">Add to cart</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-id="chunky-knit" data-title="Chunky Knit Jumper" data-price="23">
+              <div class="product-image">
+                <img src="https://images.pexels.com/photos/5704849/pexels-photo-5704849.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Chunky knit jumper">
+              </div>
+              <div class="product-details">
+                <div class="product-title">Chunky Knit Jumper</div>
+                <div class="product-meta">
+                  <span class="product-price">£23</span>
+                  <span class="product-badge">New</span>
+                </div>
+                <div class="product-meta">
+                  <span>Size L • Cream</span>
+                  <span>5.0★</span>
+                </div>
+                <div class="product-actions">
+                  <button type="button" class="cart-toggle">Add to cart</button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- CART PANEL -->
+  <div id="cartPanel" class="side-panel">
+    <div class="side-inner">
+      <div class="side-header">
+        <h3>Your cart</h3>
+        <button type="button" class="side-close-btn" id="closeCart">×</button>
+      </div>
+      <ul id="cartItems" class="side-items"></ul>
+      <p class="side-empty" id="cartEmpty">Your cart is empty. Tap “Add to cart” on a product.</p>
+      <div class="side-total" id="cartTotalRow" style="display:none;">
+        <span>Total:</span>
+        <strong id="cartTotalPrice">£0</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUTH MODAL -->
+  <div id="authModal">
+    <div class="auth-box">
+      <div class="auth-header">
+        <div class="auth-title" id="authTitle">Sign in</div>
+        <button class="auth-close" id="authClose">×</button>
+      </div>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-form="loginForm">Login</button>
+        <button class="auth-tab" data-form="registerForm">Register</button>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <form id="loginForm" class="auth-form active">
+        <label for="loginEmail">Email address</label>
+        <input id="loginEmail" type="email" placeholder="you@example.com" required>
+
+        <label for="loginPassword">Password</label>
+        <input id="loginPassword" type="password" placeholder="Enter password" required>
+
+        <button type="submit">Log in</button>
+
+        <div class="auth-footer-text">
+          <a id="forgotLink">Forgot password?</a>
+        </div>
+        <div class="auth-footer-text">
+          Don’t have an account? <a id="toRegister">Create one</a>
+        </div>
+      </form>
+
+      <!-- REGISTER FORM -->
+      <form id="registerForm" class="auth-form">
+        <label for="regName">Full name</label>
+        <input id="regName" type="text" placeholder="Your name" required>
+
+        <label for="regEmail">Email address</label>
+        <input id="regEmail" type="email" placeholder="you@example.com" required>
+
+        <label for="regPassword">Password</label>
+        <input id="regPassword" type="password" placeholder="Create a password" required>
+
+        <button type="submit">Register</button>
+
+        <div class="auth-footer-text">
+          Already have an account? <a id="toLogin">Sign in</a>
+        </div>
+      </form>
+
+      <!-- FORGOT PASSWORD FORM -->
+      <form id="forgotForm" class="auth-form">
+        <label for="forgotEmail">Enter your email to reset</label>
+        <input id="forgotEmail" type="email" placeholder="you@example.com" required>
+
+        <button type="submit">Send reset link</button>
+
+        <div class="auth-footer-text">
+          Remembered it? <a id="backToLogin">Back to login</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">
+            <div class="footer-logo-badge">TH</div>
+            <span>Thrift Haven</span>
+          </div>
+          <p>
+            A curated thrift marketplace built for conscious shoppers who want style without waste.
+          </p>
+          <div class="social-row">
+            <div class="social-icon" aria-label="Instagram">IG</div>
+            <div class="social-icon" aria-label="TikTok">TT</div>
+            <div class="social-icon" aria-label="Facebook">f</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-heading">Shop</div>
+          <ul class="footer-links">
+            <li><a href="shop.html">New in</a></li>
+            <li><a href="shop.html">Trending now</a></li>
+            <li><a href="shop.html">Vintage edits</a></li>
+            <li><a href="shop.html">£20 and under</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-heading">About</div>
+          <ul class="footer-links">
+            <li><a href="about.html">Our story</a></li>
+            <li><a href="about.html">Sustainability</a></li>
+            <li><a href="blog.html">Journal</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-heading">Support</div>
+          <ul class="footer-links">
+            <li><a href="contact.html">Contact us</a></li>
+            <li><a href="#">FAQs</a></li>
+            <li><a href="#">Shipping & returns</a></li>
+            <li><a href="#">Seller help</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© <span id="year"></span> Thrift Haven. All rights reserved.</div>
+        <div class="footer-bottom-links">
+          <a href="#">Terms</a>
+          <a href="#">Privacy</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    // Mobile nav
+    const navToggle = document.getElementById('navToggle');
+    const mainNav = document.getElementById('mainNav');
+    if (navToggle) {
+      navToggle.addEventListener('click', () => {
+        mainNav.classList.toggle('open');
+      });
+    }
+
+    // Auto year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Hero buttons -> shop.html
+    const startBtn = document.getElementById('startThriftingBtn');
+    const browseBtn = document.getElementById('browseNewBtn');
+    if (startBtn) startBtn.addEventListener('click', () => { window.location.href = 'shop.html'; });
+    if (browseBtn) browseBtn.addEventListener('click', () => { window.location.href = 'shop.html'; });
+
+    // Savings block scrolls to Featured section
+    const savingsBlock = document.getElementById('savingsBlock');
+    if (savingsBlock) {
+      savingsBlock.addEventListener('click', () => {
+        const featured = document.getElementById('featured');
+        if (featured) {
+          featured.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    }
+
+    // Hero tiles -> scroll to category
+    document.querySelectorAll('.hero-item[data-target]').forEach(box => {
+      box.addEventListener('click', () => {
+        const id = box.getAttribute('data-target');
+        const sec = document.getElementById(id);
+        if (sec) {
+          sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // CART LOGIC (localStorage)
+    const CART_KEY = 'thrift_cart_v1';
+
+    function loadCart() {
+      try {
+        return JSON.parse(localStorage.getItem(CART_KEY)) || [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveCart(value) {
+      localStorage.setItem(CART_KEY, JSON.stringify(value));
+    }
+
+    let cart = loadCart();
+
+    const cartCountSpan = document.getElementById('cartCount');
+    const cartPanel = document.getElementById('cartPanel');
+    const cartItemsEl = document.getElementById('cartItems');
+    const cartEmpty = document.getElementById('cartEmpty');
+    const cartTotalRow = document.getElementById('cartTotalRow');
+    const cartTotalPriceEl = document.getElementById('cartTotalPrice');
+
+    function updateCartCount() {
+      const qty = cart.reduce((sum, item) => sum + item.qty, 0);
+      cartCountSpan.textContent = qty ? '🛒 ' + qty : '🛒';
+    }
+
+    function renderCartPanel() {
+      cartItemsEl.innerHTML = '';
+      if (!cart.length) {
+        cartEmpty.style.display = 'block';
+        cartTotalRow.style.display = 'none';
+        return;
+      }
+      cartEmpty.style.display = 'none';
+      cartTotalRow.style.display = 'flex';
+
+      let total = 0;
+      cart.forEach(item => {
+        total += item.price * item.qty;
+        const li = document.createElement('li');
+
+        const titleSpan = document.createElement('span');
+        titleSpan.textContent = item.title;
+
+        const qtySpan = document.createElement('span');
+        qtySpan.textContent = '×' + item.qty + ' · £' + item.price.toFixed(2);
+
+        li.appendChild(titleSpan);
+        li.appendChild(qtySpan);
+        cartItemsEl.appendChild(li);
+      });
+
+      cartTotalPriceEl.textContent = '£' + total.toFixed(2);
+    }
+
+    // Initialise product Add-to-cart buttons
+    document.querySelectorAll('.product-card').forEach(card => {
+      const id = card.dataset.id;
+      const title = card.dataset.title;
+      const price = parseFloat(card.dataset.price);
+
+      const cartBtn = card.querySelector('.cart-toggle');
+
+      const existing = cart.find(i => i.id === id);
+      if (existing) {
+        cartBtn.classList.add('in-cart');
+        cartBtn.textContent = 'In cart';
+      }
+
+      cartBtn.addEventListener('click', () => {
+        const found = cart.find(i => i.id === id);
+        if (found) {
+          found.qty += 1;
+        } else {
+          cart.push({ id, title, price, qty: 1 });
+        }
+        cartBtn.classList.add('in-cart');
+        cartBtn.textContent = 'In cart';
+        saveCart(cart);
+        updateCartCount();
+        renderCartPanel();
+      });
+    });
+
+    // Open / close cart panel
+    const cartButton = document.getElementById('cartButton');
+    const closeCartBtn = document.getElementById('closeCart');
+
+    cartButton.addEventListener('click', () => {
+      cartPanel.classList.add('open');
+    });
+
+    closeCartBtn.addEventListener('click', () => {
+      cartPanel.classList.remove('open');
+    });
+
+    cartPanel.addEventListener('click', (e) => {
+      if (e.target === cartPanel) cartPanel.classList.remove('open');
+    });
+
+    // Initial render for cart
+    updateCartCount();
+    renderCartPanel();
+
+    // AUTH MODAL LOGIC
+    const authModal = document.getElementById('authModal');
+    const openAuthBtn = document.getElementById('openAuth');
+    const authCloseBtn = document.getElementById('authClose');
+    const authTitle = document.getElementById('authTitle');
+    const authTabs = document.querySelectorAll('.auth-tab');
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+    const forgotForm = document.getElementById('forgotForm');
+
+    function showForm(formName) {
+      [loginForm, registerForm, forgotForm].forEach(f => f.classList.remove('active'));
+
+      if (formName === 'login') {
+        loginForm.classList.add('active');
+        authTitle.textContent = 'Sign in';
+      } else if (formName === 'register') {
+        registerForm.classList.add('active');
+        authTitle.textContent = 'Create account';
+      } else if (formName === 'forgot') {
+        forgotForm.classList.add('active');
+        authTitle.textContent = 'Reset password';
+      }
+    }
+
+    openAuthBtn.addEventListener('click', () => {
+      authModal.classList.add('open');
+      showForm('login');
+      // set tabs
+      authTabs.forEach(t => t.classList.remove('active'));
+      authTabs[0].classList.add('active');
+    });
+
+    authCloseBtn.addEventListener('click', () => {
+      authModal.classList.remove('open');
+    });
+
+    authModal.addEventListener('click', (e) => {
+      if (e.target === authModal) {
+        authModal.classList.remove('open');
+      }
+    });
+
+    authTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        authTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const form = tab.dataset.form;
+        if (form === 'loginForm') showForm('login');
+        if (form === 'registerForm') showForm('register');
+      });
+    });
+
+    // Links inside forms
+    document.getElementById('forgotLink').addEventListener('click', () => {
+      showForm('forgot');
+      authTabs.forEach(t => t.classList.remove('active'));
+    });
+
+    document.getElementById('backToLogin').addEventListener('click', () => {
+      showForm('login');
+      authTabs.forEach(t => t.classList.remove('active'));
+      authTabs[0].classList.add('active');
+    });
+
+    document.getElementById('toRegister').addEventListener('click', () => {
+      showForm('register');
+      authTabs.forEach(t => t.classList.remove('active'));
+      authTabs[1].classList.add('active');
+    });
+
+    document.getElementById('toLogin').addEventListener('click', () => {
+      showForm('login');
+      authTabs.forEach(t => t.classList.remove('active'));
+      authTabs[0].classList.add('active');
+    });
+
+    // Fake handlers for demo (no real backend)
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Logged in (demo only).');
+      authModal.classList.remove('open');
+    });
+
+    registerForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Account created (demo only). You can now log in.');
+      showForm('login');
+      authTabs.forEach(t => t.classList.remove('active'));
+      authTabs[0].classList.add('active');
+    });
+
+    forgotForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Reset link sent (demo only).');
+      showForm('login');
+      authTabs.forEach(t => t.classList.remove('active'));
+      authTabs[0].classList.add('active');
+    });
+  </script>
+</body>
+</html>

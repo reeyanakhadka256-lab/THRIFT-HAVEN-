@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Thrift Haven | Sign In</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #2b7a4b;
+      --primary-light: #e0f2e8;
+      --dark: #1b1b1f;
+      --text-muted: #6b6b6f;
+      --bg: #f8f8fb;
+      --white: #ffffff;
+      --border: #e2e2ea;
+      --shadow-soft: 0 10px 35px rgba(0,0,0,0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 1rem;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--white);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid var(--border);
+      animation: fadeUp 0.5s ease;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 1.4rem;
+    }
+
+    .logo-badge {
+      width: 36px;
+      height: 36px;
+      background: var(--primary-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1.3rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      margin-bottom: 0.25rem;
+      font-weight: 500;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.7rem 0.9rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      font-size: 0.9rem;
+      outline: none;
+      background: var(--bg);
+    }
+
+    input:focus {
+      border-color: var(--primary);
+    }
+
+    .password-wrapper {
+      position: relative;
+    }
+
+    .toggle-pass {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      color: var(--text-muted);
+    }
+
+    .btn-primary {
+      width: 100%;
+      margin-top: 1rem;
+      padding: 0.75rem;
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    .bottom-text {
+      margin-top: 1rem;
+      text-align: center;
+      font-size: 0.86rem;
+    }
+
+    .bottom-text a {
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="logo">
+      <div class="logo-badge">TH</div>
+      Thrift Haven
+    </div>
+
+    <h2>Welcome back</h2>
+    <p>Sign in to your account</p>
+
+    <form onsubmit="event.preventDefault(); alert('Demo login successful!');">
+      
+      <label>Email Address</label>
+      <input type="email" placeholder="you@example.com" required>
+
+      <label style="margin-top:1rem;">Password</label>
+      <div class="password-wrapper">
+        <input type="password" id="passwordField" placeholder="Enter your password" required>
+        <button type="button" class="toggle-pass" onclick="togglePassword()">👁</button>
+      </div>
+
+      <button class="btn-primary" type="submit">Sign In</button>
+    </form>
+
+    <div class="bottom-text">
+      Don’t have an account? <a href="#">Register</a>
+    </div>
+  </div>
+
+  <script>
+    function togglePassword() {
+      const field = document.getElementById('passwordField');
+      field.type = field.type === 'password' ? 'text' : 'password';
+    }
+  </script>
+
+</body>
+</html>

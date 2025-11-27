@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Thrift Haven | About Us</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    
+    /* 🍷 LUXURY BURGUNDY THEME — SUPER CLASSY & EYE-CATCHING */
+
+:root {
+  /* MAIN COLOURS */
+  --primary: #7a0026;         /* deep rich burgundy */
+  --primary-light: #f5e4ea;   /* soft rose blush */
+  --accent: #c59774;          /* warm gold/champagne highlight */
+
+  /* TEXT */
+  --dark: #2b0d14;            /* dark plum-burgundy */
+  --text-muted: #8e6272;      /* muted rose-plum */
+
+  /* BACKGROUND */
+  --bg: #faf6f7;              /* soft blush background */
+  --white: #ffffff;
+
+  /* BORDERS */
+  --border: #e7c7d2;          /* soft rose gold border */
+
+  /* SHADOW */
+  --shadow-soft: 0 12px 30px rgba(122, 0, 38, 0.18);
+
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --transition: 0.25s ease;
+}
+
+/* BACKGROUND LUXURY GRADIENT */
+body {
+  background: radial-gradient(circle at top left, #f5e4ea 0%, #faf6f7 50%, #ffffff 100%);
+  font-family: 'Poppins', sans-serif;
+  color: var(--dark);
+}
+
+/* HEADER — GLASS + BURGUNDY SHADOW */
+header {
+  background: rgba(250, 246, 247, 0.85);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 4px 18px rgba(122, 0, 38, 0.2);
+}
+
+/* BUTTONS — GOLD + BURGUNDY GRADIENT */
+.btn-primary {
+  background: linear-gradient(135deg, #7a0026, #4d0018);
+  color: var(--white) !important;
+  border: none;
+  border-radius: 999px;
+  padding: 0.7rem 1.6rem;
+  font-weight: 500;
+  box-shadow: 0 12px 28px rgba(122, 0, 38, 0.4);
+  transition: 0.25s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 38px rgba(122, 0, 38, 0.55);
+}
+
+/* OUTLINE BUTTON */
+.btn-outline {
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  background: var(--white);
+}
+
+.btn-outline:hover {
+  background: var(--primary-light);
+  border-color: var(--primary);
+}
+
+/* CARDS — LUXURY BORDERS + SOFT SHADOW */
+.card,
+.product-card,
+.category-card,
+.about-card,
+.newsletter,
+.testimonial-card,
+.shop-main-card,
+.filters {
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+  background: var(--white);
+}
+
+/* BADGES, TAGS, LABELS */
+.pill,
+.hero-tag,
+.hero-pill,
+.category-icon,
+.product-badge,
+.badge-small,
+.filter-chip.active {
+  background: var(--primary-light);
+  color: var(--primary) !important;
+  border: none;
+}
+
+/* LINKS */
+a:hover {
+  color: var(--primary);
+}
+
+/* FOOTER — DEEP BURGUNDY */
+footer {
+  background: #3a0010 !important;
+  color: #f5e4ea;
+}
+
+footer a:hover {
+  color: var(--accent) !important;
+}
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Poppins", sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* Header */
+    header {
+      width: 100%;
+      background: var(--white);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      gap: 1rem;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--primary);
+    }
+    .logo-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: var(--primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--primary);
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    nav a {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      position: relative;
+      padding-bottom: 0.2rem;
+    }
+    nav a.active,
+    nav a:hover { color: var(--primary); }
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--primary);
+      transition: width var(--transition);
+    }
+    nav a:hover::after,
+    nav a.active::after { width: 100%; }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .btn {
+      border-radius: 999px;
+      padding: 0.55rem 1.3rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid transparent;
+      cursor: pointer;
+      background: none;
+      transition: background var(--transition), color var(--transition),
+                  border var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: var(--white);
+      box-shadow: var(--shadow-soft);
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 35px rgba(0,0,0,0.13);
+    }
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      background: var(--white);
+    }
+    .icon-btn span { font-size: 1.1rem; }
+
+    .nav-toggle {
+      display: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      background: var(--white);
+    }
+    .nav-toggle span { font-size: 1.2rem; }
+
+    /* Page hero */
+    .page-hero {
+      padding: 2rem 0 1rem;
+    }
+    .breadcrumb {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+    .breadcrumb span { opacity: 0.7; }
+    .page-title {
+      font-size: 1.7rem;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.4rem;
+    }
+    .page-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 520px;
+    }
+
+    /* About layout */
+    .about-layout {
+      padding: 1.5rem 0 3rem;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 2rem;
+    }
+    .about-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 1.6rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+    }
+    .about-card h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.7rem;
+    }
+    .about-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+    }
+    .about-highlight {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .about-stat {
+      font-size: 0.85rem;
+    }
+    .about-stat strong {
+      display: block;
+      font-size: 1.1rem;
+      color: var(--primary);
+    }
+    .about-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 0.78rem;
+      margin-bottom: 0.6rem;
+      font-weight: 500;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .value-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 0.9rem;
+      font-size: 0.86rem;
+      background: var(--bg);
+    }
+    .value-card h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .timeline {
+      margin-top: 1.2rem;
+      border-left: 2px solid var(--border);
+      padding-left: 1rem;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+    .timeline-item {
+      margin-bottom: 0.7rem;
+    }
+    .timeline-item strong {
+      color: var(--dark);
+      display: block;
+    }
+
+    /* Footer */
+    footer {
+      background: #101017;
+      color: #f2f2f7;
+      padding-top: 2rem;
+      margin-top: 1rem;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) repeat(3, minmax(0, 1fr));
+      gap: 1.8rem;
+      padding-bottom: 1.8rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.7rem;
+    }
+    .footer-logo-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    .footer-logo span {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    .footer-top p {
+      font-size: 0.83rem;
+      color: #b0b0c0;
+      max-width: 280px;
+    }
+    .footer-heading {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.7rem;
+    }
+    .footer-links {
+      list-style: none;
+      font-size: 0.83rem;
+      color: #c6c6d6;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .footer-links a {
+      color: inherit;
+      opacity: 0.85;
+      transition: opacity var(--transition), transform var(--transition);
+    }
+    .footer-links a:hover {
+      opacity: 1;
+      transform: translateX(2px);
+    }
+    .social-row {
+      display: flex;
+      gap: 0.4rem;
+      margin-top: 0.7rem;
+    }
+    .social-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+    .footer-bottom {
+      padding: 0.9rem 0 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.78rem;
+      color: #9a9aac;
+    }
+    .footer-bottom-links {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-top {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+      }
+    }
+    @media (max-width: 768px) {
+      nav {
+        position: fixed;
+        inset: 60px 0 auto 0;
+        background: var(--white);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.8rem 1.25rem 1rem;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        transform: translateY(-120%);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform var(--transition), opacity var(--transition);
+      }
+      nav.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .header-actions { display: none; }
+      .nav-toggle { display: flex; }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+      }
+      .footer-bottom {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+  <div class="container header-inner">
+
+    <!-- LOGO -->
+    <a href="index.html" class="logo">
+      <div class="logo-badge">TH</div>
+      Thrift Haven
+    </a>
+
+    <!-- NAVBAR -->
+    <nav id="mainNav">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <!-- ACTION BUTTONS -->
+    <div class="header-actions">
+      <button class="icon-btn" aria-label="View favourites">
+        <span>♡</span>
+      </button>
+      <button class="icon-btn" aria-label="View cart">
+        <span>🛒</span>
+      </button>
+
+      <!-- THIS is the FIXED SIGN IN BUTTON -->
+      <a href="signin.html" class="btn btn-primary">Sign In</a>
+    </div>
+
+    <!-- MOBILE MENU -->
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <span>☰</span>
+    </button>
+  </div>
+</header>
+
+<script>
+  // Mobile nav menu toggle
+  const navToggle = document.getElementById("navToggle");
+  const mainNav = document.getElementById("mainNav");
+
+  navToggle.addEventListener("click", () => {
+    mainNav.classList.toggle("open");
+  });
+</script>
+  <main>
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="index.html">Home</a> <span> / About</span>
+        </div>
+        <h1 class="page-title">The story behind Thrift Haven</h1>
+        <p class="page-subtitle">
+          Built for conscious shoppers, small sellers and vintage lovers. We’re here to make second-hand your first choice.
+        </p>
+      </div>
+    </section>
+
+    <!-- ABOUT CONTENT -->
+    <section class="about-layout">
+      <div class="container about-grid">
+        <!-- Left: main story -->
+        <article class="about-card">
+          <div class="about-pill">
+            <span>♻</span> Circular fashion, real impact
+          </div>
+          <h2>Why we started Thrift Haven</h2>
+          <p>
+            Fast fashion moves quickly – but the environmental cost lasts for decades. Thrift Haven was created as
+            a simple alternative: a curated space where quality pieces are given a second life instead of ending up in landfill.
+          </p>
+          <p>
+            Every item on Thrift Haven has been vetted for quality and style. We work with trusted individual sellers,
+            small boutiques and vintage pickers to bring you pieces that feel new to you, without the footprint of buying new.
+          </p>
+          <p>
+            When you thrift with us, you support a slower, more thoughtful way of shopping – and you help keep good clothes in circulation.
+          </p>
+
+          <div class="about-highlight">
+            <div class="about-stat">
+              <strong>24,318</strong>
+              items rehomed through our marketplace.
+            </div>
+            <div class="about-stat">
+              <strong>18,500kg</strong>
+              estimated textile waste saved so far.
+            </div>
+            <div class="about-stat">
+              <strong>65%</strong>
+              average saving vs recommended retail price.
+            </div>
+          </div>
+        </article>
+
+        <!-- Right: values & timeline -->
+        <aside class="about-card">
+          <h2>What we care about</h2>
+          <div class="values-grid">
+            <div class="value-card">
+              <h3>Transparency</h3>
+              <p>Clear item descriptions, honest condition notes and simple pricing – no surprises at delivery.</p>
+            </div>
+            <div class="value-card">
+              <h3>Community</h3>
+              <p>We champion independent sellers, small businesses and local thrifters who share our values.</p>
+            </div>
+            <div class="value-card">
+              <h3>Longevity</h3>
+              <p>We focus on pieces built to last – from timeless cuts to quality fabrics.</p>
+            </div>
+            <div class="value-card">
+              <h3>Accessibility</h3>
+              <p>We keep thrift simple to browse, easy to filter and fair in price.</p>
+            </div>
+          </div>
+
+          <div class="timeline">
+            <div class="timeline-item">
+              <strong>2022 – Idea & research</strong>
+              Thrift lovers frustrated with fast fashion start mapping out a better online experience.
+            </div>
+            <div class="timeline-item">
+              <strong>2023 – Beta launch</strong>
+              First 500 users onboarded and our original group of verified sellers join the marketplace.
+            </div>
+            <div class="timeline-item">
+              <strong>2024 – Impact focus</strong>
+              We begin tracking textile waste saved and introduce eco labels for our most sustainable picks.
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">
+            <div class="footer-logo-badge">TH</div>
+            <span>Thrift Haven</span>
+          </div>
+          <p>
+            A curated thrift marketplace built for conscious shoppers who want style without waste.
+          </p>
+          <div class="social-row">
+            <div class="social-icon" aria-label="Instagram">IG</div>
+            <div class="social-icon" aria-label="TikTok">TT</div>
+            <div class="social-icon" aria-label="Facebook">f</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-heading">Shop</div>
+          <ul class="footer-links">
+            <li><a href="shop.html">New in</a></li>
+            <li><a href="shop.html">Trending now</a></li>
+            <li><a href="shop.html">Vintage edits</a></li>
+            <li><a href="shop.html">£20 and under</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-heading">About</div>
+          <ul class="footer-links">
+            <li><a href="about.html">Our story</a></li>
+            <li><a href="about.html">Sustainability</a></li>
+            <li><a href="blog.html">Journal</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-heading">Support</div>
+          <ul class="footer-links">
+            <li><a href="contact.html">Contact us</a></li>
+            <li><a href="#">FAQs</a></li>
+            <li><a href="#">Shipping & returns</a></li>
+            <li><a href="#">Seller help</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© <span id="year"></span> Thrift Haven. All rights reserved.</div>
+        <div class="footer-bottom-links">
+          <a href="#">Terms</a>
+          <a href="#">Privacy</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const navToggle = document.getElementById('navToggle');
+    const mainNav = document.getElementById('mainNav');
+    navToggle.addEventListener('click', () => {
+      mainNav.classList.toggle('open');
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
