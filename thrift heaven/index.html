@@ -417,7 +417,7 @@
 
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 1rem;
     }
 
@@ -563,7 +563,20 @@
       border-bottom: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
+      align-items: center;
       gap: 0.4rem;
+    }
+
+    .cart-remove {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .cart-remove:hover {
+      color: var(--primary);
     }
 
     .side-empty {
@@ -718,7 +731,7 @@
       cursor: pointer;
     }
 
-    /* FOOTER – SAME STYLE AS OTHER PAGES */
+    /* FOOTER */
 
     footer {
       background: #3a0010;
@@ -993,7 +1006,7 @@
       </div>
     </section>
 
-    <!-- FEATURED DROPS WITH 4 CATEGORIES -->
+    <!-- FEATURED DROPS -->
     <section id="featured">
       <div class="container">
         <div class="section-header">
@@ -1023,7 +1036,7 @@
                   <span>4.9★</span>
                 </div>
                 <div class="product-actions">
-                  <button type="button" class="cart-toggle">Add to cart</button>
+                  <button type="button" class="cart-toggle">In cart</button>
                 </div>
               </div>
             </article>
@@ -1041,6 +1054,26 @@
                 <div class="product-meta">
                   <span>Size 10 • Mid wash</span>
                   <span>4.8★</span>
+                </div>
+                <div class="product-actions">
+                  <button type="button" class="cart-toggle">Add to cart</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-id="wide-leg-denim" data-title="Wide-Leg Vintage Jeans" data-price="27">
+              <div class="product-image">
+                <img src="https://images.pexels.com/photos/7671131/pexels-photo-7671131.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Wide-leg denim">
+              </div>
+              <div class="product-details">
+                <div class="product-title">Wide-Leg Vintage Jeans</div>
+                <div class="product-meta">
+                  <span class="product-price">£27</span>
+                  <span class="product-badge">90s</span>
+                </div>
+                <div class="product-meta">
+                  <span>Size 12 • Soft blue</span>
+                  <span>4.7★</span>
                 </div>
                 <div class="product-actions">
                   <button type="button" class="cart-toggle">Add to cart</button>
@@ -1065,7 +1098,7 @@
                   <span class="product-badge">New in</span>
                 </div>
                 <div class="product-meta">
-                  <span>Faux leather • Black</span>
+                  <span>Black • Faux leather</span>
                   <span>4.9★</span>
                 </div>
                 <div class="product-actions">
@@ -1087,6 +1120,26 @@
                 <div class="product-meta">
                   <span>Brown • Shoulder strap</span>
                   <span>4.7★</span>
+                </div>
+                <div class="product-actions">
+                  <button type="button" class="cart-toggle">Add to cart</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-id="boxy-handbag" data-title="Boxy Patent Handbag" data-price="23">
+              <div class="product-image">
+                <img src="https://images.pexels.com/photos/1918445/pexels-photo-1918445.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Boxy handbag">
+              </div>
+              <div class="product-details">
+                <div class="product-title">Boxy Patent Handbag</div>
+                <div class="product-meta">
+                  <span class="product-price">£23</span>
+                  <span class="product-badge">Party</span>
+                </div>
+                <div class="product-meta">
+                  <span>Wine • Top handle</span>
+                  <span>4.6★</span>
                 </div>
                 <div class="product-actions">
                   <button type="button" class="cart-toggle">Add to cart</button>
@@ -1139,6 +1192,26 @@
                 </div>
               </div>
             </article>
+
+            <article class="product-card" data-id="cropped-shirt" data-title="Cropped Poplin Shirt" data-price="20">
+              <div class="product-image">
+                <img src="https://images.pexels.com/photos/7671133/pexels-photo-7671133.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Cropped shirt">
+              </div>
+              <div class="product-details">
+                <div class="product-title">Cropped Poplin Shirt</div>
+                <div class="product-meta">
+                  <span class="product-price">£20</span>
+                  <span class="product-badge">Trend</span>
+                </div>
+                <div class="product-meta">
+                  <span>Size 8 • Crisp white</span>
+                  <span>4.7★</span>
+                </div>
+                <div class="product-actions">
+                  <button type="button" class="cart-toggle">Add to cart</button>
+                </div>
+              </div>
+            </article>
           </div>
         </div>
 
@@ -1179,6 +1252,26 @@
                 <div class="product-meta">
                   <span>Size L • Cream</span>
                   <span>5.0★</span>
+                </div>
+                <div class="product-actions">
+                  <button type="button" class="cart-toggle">Add to cart</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card" data-id="minimal-tote" data-title="Minimal Canvas Tote" data-price="16">
+              <div class="product-image">
+                <img src="https://images.pexels.com/photos/7671163/pexels-photo-7671163.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Minimal tote">
+              </div>
+              <div class="product-details">
+                <div class="product-title">Minimal Canvas Tote</div>
+                <div class="product-meta">
+                  <span class="product-price">£16</span>
+                  <span class="product-badge">Eco</span>
+                </div>
+                <div class="product-meta">
+                  <span>Organic cotton</span>
+                  <span>4.7★</span>
                 </div>
                 <div class="product-actions">
                   <button type="button" class="cart-toggle">Add to cart</button>
@@ -1355,9 +1448,7 @@
     if (savingsBlock) {
       savingsBlock.addEventListener('click', () => {
         const featured = document.getElementById('featured');
-        if (featured) {
-          featured.scrollIntoView({ behavior: 'smooth' });
-        }
+        if (featured) featured.scrollIntoView({ behavior: 'smooth' });
       });
     }
 
@@ -1366,9 +1457,7 @@
       box.addEventListener('click', () => {
         const id = box.getAttribute('data-target');
         const sec = document.getElementById(id);
-        if (sec) {
-          sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
 
@@ -1376,11 +1465,8 @@
     const CART_KEY = 'thrift_cart_v1';
 
     function loadCart() {
-      try {
-        return JSON.parse(localStorage.getItem(CART_KEY)) || [];
-      } catch (e) {
-        return [];
-      }
+      try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
+      catch { return []; }
     }
 
     function saveCart(value) {
@@ -1414,28 +1500,30 @@
       let total = 0;
       cart.forEach(item => {
         total += item.price * item.qty;
+
         const li = document.createElement('li');
+        const text = document.createElement('span');
+        text.textContent = ${item.title} ×${item.qty} · £${item.price.toFixed(2)};
 
-        const titleSpan = document.createElement('span');
-        titleSpan.textContent = item.title;
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'cart-remove';
+        btn.dataset.id = item.id;
+        btn.textContent = '✕';
 
-        const qtySpan = document.createElement('span');
-        qtySpan.textContent = '×' + item.qty + ' · £' + item.price.toFixed(2);
-
-        li.appendChild(titleSpan);
-        li.appendChild(qtySpan);
+        li.appendChild(text);
+        li.appendChild(btn);
         cartItemsEl.appendChild(li);
       });
 
       cartTotalPriceEl.textContent = '£' + total.toFixed(2);
     }
 
-    // Initialise product Add-to-cart buttons
+    // Init product Add-to-cart buttons
     document.querySelectorAll('.product-card').forEach(card => {
       const id = card.dataset.id;
       const title = card.dataset.title;
       const price = parseFloat(card.dataset.price);
-
       const cartBtn = card.querySelector('.cart-toggle');
 
       const existing = cart.find(i => i.id === id);
@@ -1459,6 +1547,27 @@
       });
     });
 
+    // Remove from cart (event delegation)
+    cartItemsEl.addEventListener('click', (e) => {
+      if (e.target.classList.contains('cart-remove')) {
+        const id = e.target.dataset.id;
+        cart = cart.filter(item => item.id !== id);
+        saveCart(cart);
+        updateCartCount();
+        renderCartPanel();
+
+        // also reset button on product
+        const card = document.querySelector(.product-card[data-id="${id}"]);
+        if (card) {
+          const btn = card.querySelector('.cart-toggle');
+          if (btn) {
+            btn.classList.remove('in-cart');
+            btn.textContent = 'Add to cart';
+          }
+        }
+      }
+    });
+
     // Open / close cart panel
     const cartButton = document.getElementById('cartButton');
     const closeCartBtn = document.getElementById('closeCart');
@@ -1475,7 +1584,7 @@
       if (e.target === cartPanel) cartPanel.classList.remove('open');
     });
 
-    // Initial render for cart
+    // Initial cart render
     updateCartCount();
     renderCartPanel();
 
@@ -1507,7 +1616,6 @@
     openAuthBtn.addEventListener('click', () => {
       authModal.classList.add('open');
       showForm('login');
-      // set tabs
       authTabs.forEach(t => t.classList.remove('active'));
       authTabs[0].classList.add('active');
     });
@@ -1517,9 +1625,7 @@
     });
 
     authModal.addEventListener('click', (e) => {
-      if (e.target === authModal) {
-        authModal.classList.remove('open');
-      }
+      if (e.target === authModal) authModal.classList.remove('open');
     });
 
     authTabs.forEach(tab => {
@@ -1532,7 +1638,6 @@
       });
     });
 
-    // Links inside forms
     document.getElementById('forgotLink').addEventListener('click', () => {
       showForm('forgot');
       authTabs.forEach(t => t.classList.remove('active'));
@@ -1556,7 +1661,7 @@
       authTabs[0].classList.add('active');
     });
 
-    // Fake handlers for demo (no real backend)
+    // Demo-only handlers
     loginForm.addEventListener('submit', (e) => {
       e.preventDefault();
       alert('Logged in (demo only).');
