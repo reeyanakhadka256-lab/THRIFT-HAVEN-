@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Create Account | Thrift Haven</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  :root{
+    --bg:#f7f1e8;--primary:#3a0f14;
+    --text:#1f2933;--soft:#6b7280;
+    --radius:20px;--pill:999px;
+    --border:#e5ded3;--font:system-ui;
+  }
+  body{
+    font-family:var(--font);
+    background:radial-gradient(circle at top left,#fcf5eb 0,var(--bg)42%,#f3ece1 100%);
+    margin:0;padding:0;color:var(--text);
+    display:flex;flex-direction:column;min-height:100vh;
+  }
+  a{text-decoration:none;color:inherit;}
+  header{background:rgba(247,241,232,0.8);border-bottom:1px solid #ddd;}
+  .nav-shell{
+    max-width:1120px;margin:0 auto;padding:14px 20px;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand-mark{
+    width:32px;height:32px;border-radius:50%;background:#111827;color:white;
+    display:flex;align-items:center;justify-content:center;font-weight:700;
+  }
+  .shell{max-width:1120px;margin:0 auto;padding:40px 20px;}
+  .card{
+    max-width:420px;margin:auto;background:white;border-radius:var(--radius);
+    padding:26px;border:1px solid var(--border);box-shadow:0 15px 40px rgba(0,0,0,0.08);
+  }
+  input{
+    width:100%;padding:10px;border-radius:10px;border:1px solid var(--border);
+    margin-bottom:14px;background:#fff9f0;
+  }
+  button{
+    width:100%;padding:10px;background:var(--primary);border:none;
+    color:white;border-radius:var(--pill);cursor:pointer;font-size:15px;
+  }
+  footer{text-align:center;margin-top:auto;padding:16px;background:#2c0735;color:white;}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav-shell">
+    <div class="brand"><div class="brand-mark">TH</div><strong>Thrift Haven</strong></div>
+    <nav style="display:flex;gap:20px;">
+      <a href="index.html">Home</a><a href="shop.html">Shop</a><a href="about.html">About</a>
+      <a href="blog.html">Blog</a><a href="contact.html">Contact</a>
+    </nav>
+    <a href="signin.html" style="background:#3a0f14;color:white;padding:8px 18px;border-radius:999px;">Sign In</a>
+  </div>
+</header>
+
+<section class="shell">
+  <div class="card">
+    <h2>Create your account</h2>
+    <p style="color:var(--soft);margin-bottom:12px;">Join Thrift Haven to save favourites and checkout faster.</p>
+
+    <form id="signup-form">
+      <input id="name" type="text" placeholder="Full name" required />
+      <input id="email" type="email" placeholder="Email address" required />
+      <input id="password" type="password" placeholder="Create password" required />
+      <button type="submit">Create Account</button>
+    </form>
+
+    <p style="margin-top:12px;font-size:13px;color:var(--soft);text-align:center;">
+      Already have an account? <a href="signin.html" style="color:#1d4ed8;">Sign in</a>
+    </p>
+  </div>
+</section>
+
+<footer>© 2025 Thrift Haven. All rights reserved.</footer>
+
+<script>
+document.getElementById("signup-form").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim().toLowerCase();
+  const password = document.getElementById("password").value.trim();
+
+  const users = JSON.parse(localStorage.getItem("thriftHavenUsers") || "[]");
+
+  if(users.some(u => u.email === email)){
+    alert("This email already has an account.");
+    return;
+  }
+
+  users.push({name,email,password});
+  localStorage.setItem("thriftHavenUsers", JSON.stringify(users));
+
+  alert("Account created successfully. Sign in to continue.");
+
+  window.location.href = "signin.html";
+});
+</script>
+
+</body>
+</html>

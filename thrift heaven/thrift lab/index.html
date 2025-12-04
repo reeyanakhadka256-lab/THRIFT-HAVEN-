@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Thrift Haven | Sustainable Thrifted Fashion</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #f7f1e8;
+      --bg-soft: #f3ece1;
+      --card-bg: #fff9f0;
+      --card-strong: #ffffff;
+      --primary: #3a0f14;   /* deep maroon like your Sign In pill */
+      --primary-soft: #f3e6e9;
+      --text-main: #1f2933;
+      --text-soft: #6b7280;
+      --pill-bg: #fdf7ee;
+      --border-subtle: #e5ded3;
+      --radius-lg: 20px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.14);
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      --transition-fast: 160ms ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: radial-gradient(circle at top left, #fcf5eb 0, var(--bg) 42%, #f3ece1 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* NAVBAR -------------------------------------------------- */
+
+    header {
+      width: 100%;
+      border-bottom: 1px solid rgba(209, 213, 219, 0.4);
+      background: rgba(247, 241, 232, 0.8);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .nav-shell {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 14px 20px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: #111827;
+      color: #f9fafb;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-text-main {
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 14px;
+      color: #4b5563;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 3px;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width var(--transition-fast);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pill-icon {
+      border-radius: var(--radius-pill);
+      padding: 7px 11px;
+      background: var(--pill-bg);
+      border: 1px solid rgba(209, 213, 219, 0.8);
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pill-icon span.icon {
+      font-size: 15px;
+    }
+
+    .cart-pill {
+      cursor: pointer;
+      position: relative;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      background: var(--primary);
+      color: #f9fafb;
+      border-radius: var(--radius-pill);
+      padding: 1px 6px;
+      font-size: 11px;
+      min-width: 18px;
+      text-align: center;
+    }
+
+    .pill-signin {
+      border-radius: var(--radius-pill);
+      padding: 8px 18px;
+      border: none;
+      background: var(--primary);
+      color: #f9fafb;
+      font-size: 14px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 10px 20px rgba(58, 15, 20, 0.35);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+        filter var(--transition-fast);
+    }
+
+    .pill-signin:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.03);
+      box-shadow: 0 14px 26px rgba(58, 15, 20, 0.45);
+    }
+
+    .pill-signin:active {
+      transform: translateY(0);
+      box-shadow: 0 8px 18px rgba(58, 15, 20, 0.3);
+      filter: brightness(0.97);
+    }
+
+    /* MAIN LAYOUT ---------------------------------------------- */
+
+    main {
+      flex: 1;
+      width: 100%;
+    }
+
+    .hero-shell {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 32px 20px 32px;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 4fr);
+      gap: 36px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      color: var(--text-soft);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-size: 32px;
+      line-height: 1.16;
+      max-width: 24rem;
+      margin-bottom: 14px;
+    }
+
+    .hero-body {
+      font-size: 14px;
+      color: var(--text-soft);
+      line-height: 1.6;
+      max-width: 26rem;
+      margin-bottom: 18px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .btn-primary {
+      border-radius: var(--radius-pill);
+      padding: 9px 20px;
+      background: #111827;
+      color: #f9fafb;
+      border: none;
+      font-size: 14px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 10px 20px rgba(15, 23, 42, 0.35);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+        filter var(--transition-fast);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.03);
+      box-shadow: 0 14px 26px rgba(15, 23, 42, 0.45);
+    }
+
+    .btn-secondary {
+      border-radius: var(--radius-pill);
+      padding: 9px 18px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(255, 255, 255, 0.9);
+      color: #374151;
+      font-size: 14px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: background var(--transition-fast), border-color var(--transition-fast),
+        transform var(--transition-fast);
+    }
+
+    .btn-secondary:hover {
+      background: #ffffff;
+      transform: translateY(-1px);
+      border-color: rgba(148, 163, 184, 1);
+    }
+
+    .hero-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .metric {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      color: var(--text-soft);
+    }
+
+    .metric strong {
+      font-size: 13px;
+      color: #374151;
+    }
+
+    /* HERO RIGHT / CATEGORIES --------------------------------- */
+
+    .hero-right {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .category-panel {
+      width: 100%;
+      max-width: 420px;
+      background: var(--card-strong);
+      border-radius: 24px;
+      padding: 16px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(209, 213, 219, 0.7);
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .category-card {
+      border-radius: 16px;
+      background: linear-gradient(135deg, #e5e7eb, #f9fafb);
+      height: 100px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding: 10px 11px;
+      font-size: 13px;
+      color: #111827;
+    }
+
+    .category-card span {
+      background: rgba(255, 255, 255, 0.88);
+      padding: 4px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+    }
+
+    .category-card:nth-child(1) {
+      background-image: linear-gradient(135deg, #e0ecff, #f9fafb);
+    }
+    .category-card:nth-child(2) {
+      background-image: linear-gradient(135deg, #fbe1f1, #fff7fb);
+    }
+    .category-card:nth-child(3) {
+      background-image: linear-gradient(135deg, #e0f2fe, #f9fafb);
+    }
+    .category-card:nth-child(4) {
+      background-image: linear-gradient(135deg, #ede9fe, #f5f3ff);
+    }
+
+    .category-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 12px;
+      color: var(--text-soft);
+      margin-top: 6px;
+    }
+
+    .category-footer strong {
+      color: #374151;
+    }
+
+    /* FEATURED DROPS ------------------------------------------- */
+
+    .section-shell {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 8px 20px 32px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 20px;
+      margin-bottom: 16px;
+    }
+
+    .section-header h2 {
+      font-size: 18px;
+    }
+
+    .section-header p {
+      font-size: 13px;
+      color: var(--text-soft);
+      max-width: 32rem;
+    }
+
+    .view-collection-btn {
+      border-radius: var(--radius-pill);
+      padding: 8px 16px;
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      background: #fdf7ee;
+      font-size: 13px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .view-collection-btn:hover {
+      background: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .product-card {
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(229, 231, 235, 0.9);
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.05);
+    }
+
+    .product-image {
+      border-radius: 14px;
+      background: linear-gradient(135deg, #e5e7eb, #f9fafb);
+      height: 140px;
+      margin-bottom: 4px;
+    }
+
+    .product-title {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .product-meta {
+      font-size: 12px;
+      color: var(--text-soft);
+      display: flex;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .product-meta span {
+      white-space: nowrap;
+    }
+
+    .product-price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+      margin-top: 4px;
+      font-size: 13px;
+    }
+
+    .price {
+      font-weight: 600;
+    }
+
+    .badge {
+      font-size: 11px;
+      padding: 4px 7px;
+      border-radius: 999px;
+      background: #f3e8ff;
+      color: #4b5563;
+    }
+
+    .product-actions {
+      margin-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .btn-add {
+      flex: 1;
+      border-radius: var(--radius-pill);
+      padding: 7px 10px;
+      font-size: 12px;
+      border: none;
+      cursor: pointer;
+      background: var(--primary);
+      color: #f9fafb;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+        filter var(--transition-fast);
+      box-shadow: 0 8px 18px rgba(58, 15, 20, 0.25);
+    }
+
+    .btn-add:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.03);
+      box-shadow: 0 12px 22px rgba(58, 15, 20, 0.35);
+    }
+
+    .btn-outline {
+      border-radius: var(--radius-pill);
+      padding: 7px 12px;
+      font-size: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      background: #ffffff;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .btn-outline:hover {
+      background: #f9fafb;
+      transform: translateY(-1px);
+    }
+
+    /* FOOTER --------------------------------------------------- */
+
+    footer {
+      border-top: 1px solid rgba(209, 213, 219, 0.6);
+      background: #2c0735;
+      color: #f9fafb;
+      margin-top: 24px;
+    }
+
+    .footer-shell {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #e5e7eb;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* RESPONSIVE ---------------------------------------------- */
+
+    @media (max-width: 900px) {
+      .hero-shell {
+        grid-template-columns: minmax(0, 1fr);
+        padding-top: 24px;
+        gap: 28px;
+      }
+      .hero-right {
+        justify-content: flex-start;
+      }
+      .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-shell {
+        flex-wrap: wrap;
+        gap: 10px 14px;
+      }
+      .nav-links {
+        display: none; /* keep it simple for now on very small screens */
+      }
+      .hero-title {
+        font-size: 26px;
+      }
+      .product-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .footer-shell {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header>
+    <div class="nav-shell">
+      <div class="nav-left">
+        <a href="index.html" class="brand-mark">TH</a>
+        <div class="brand-text-main">Thrift Haven</div>
+      </div>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="nav-right">
+        <a href="cart.html" class="pill-icon cart-pill" aria-label="Cart">
+          <span class="icon">🛒</span>
+          <span>Cart</span>
+          <span class="cart-count" id="cart-count">0</span>
+        </a>
+        <a href="signin.html" class="pill-signin">Sign In</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <!-- HERO -->
+    <section class="hero-shell">
+      <div>
+        <div class="eyebrow">Thrift. Save. Repeat.</div>
+        <h1 class="hero-title">
+          Discover handpicked thrifted gems without the hassle.
+        </h1>
+        <p class="hero-body">
+          Shop pre-loved fashion, curated by style. Every order keeps quality pieces in
+          circulation and reduces fashion waste.
+        </p>
+
+        <div class="hero-actions">
+          <a href="shop.html" class="btn-primary">Start thrifting</a>
+          <a href="#featured" class="btn-secondary">Browse new arrivals</a>
+        </div>
+
+        <div class="hero-metrics">
+          <div class="metric">
+            <strong>10k+ items</strong>
+            <span>Curated from trusted sellers</span>
+          </div>
+          <div class="metric">
+            <strong>4.9★ rating</strong>
+            <span>From sustainable shoppers</span>
+          </div>
+          <div class="metric">
+            <strong>CO₂ saved</strong>
+            <span>With every thrifted outfit</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <aside class="category-panel" aria-label="Popular categories">
+          <div class="category-grid">
+            <a href="shop.html#denim" class="category-card">
+              <span>Vintage denim</span>
+            </a>
+            <a href="shop.html#bags" class="category-card">
+              <span>Statement bags</span>
+            </a>
+            <a href="shop.html#shirts" class="category-card">
+              <span>Curated shirts</span>
+            </a>
+            <a href="shop.html#capsule" class="category-card">
+              <span>Capsule picks</span>
+            </a>
+          </div>
+          <div class="category-footer">
+            <div>
+              <strong>Over 2,400kg</strong><br />
+              Kept from landfill
+            </div>
+            <div>
+              <strong>£38</strong><br />
+              Avg saving / order
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- FEATURED DROPS -->
+    <section class="section-shell" id="featured">
+      <div class="section-header">
+        <div>
+          <h2>Featured drops</h2>
+          <p>
+            Fresh arrivals from our verified sellers – limited pieces, first come first served.
+          </p>
+        </div>
+        <a href="shop.html" class="view-collection-btn">
+          View full collection →
+        </a>
+      </div>
+
+      <div class="product-grid">
+        <!-- Product 1 -->
+        <article class="product-card">
+          <div class="product-image"></div>
+          <div class="product-title">Vintage Wash Mom Jeans</div>
+          <div class="product-meta">
+            <span>High waist</span>
+            <span>Best seller</span>
+          </div>
+          <div class="product-price-row">
+            <span class="price">£24</span>
+            <span class="badge">4.8★</span>
+          </div>
+          <div class="product-actions">
+            <button
+              class="btn-add"
+              data-product-id="jeans-01"
+              data-product-name="Vintage Wash Mom Jeans"
+              data-product-price="24"
+            >
+              Add to cart
+            </button>
+            <a href="shop.html#jeans-01" class="btn-outline">View details</a>
+          </div>
+        </article>
+
+        <!-- Product 2 -->
+        <article class="product-card">
+          <div class="product-image"></div>
+          <div class="product-title">Minimal Canvas Tote</div>
+          <div class="product-meta">
+            <span>Organic cotton</span>
+            <span>Eco pick</span>
+          </div>
+          <div class="product-price-row">
+            <span class="price">£14</span>
+            <span class="badge">4.7★</span>
+          </div>
+          <div class="product-actions">
+            <button
+              class="btn-add"
+              data-product-id="bag-01"
+              data-product-name="Minimal Canvas Tote"
+              data-product-price="14"
+            >
+              Add to cart
+            </button>
+            <a href="shop.html#bag-01" class="btn-outline">View details</a>
+          </div>
+        </article>
+
+        <!-- Product 3 -->
+        <article class="product-card">
+          <div class="product-image"></div>
+          <div class="product-title">Chunky Knit Jumper</div>
+          <div class="product-meta">
+            <span>Size L · Wool blend</span>
+            <span>New</span>
+          </div>
+          <div class="product-price-row">
+            <span class="price">£19</span>
+            <span class="badge">5.0★</span>
+          </div>
+          <div class="product-actions">
+            <button
+              class="btn-add"
+              data-product-id="jumper-01"
+              data-product-name="Chunky Knit Jumper"
+              data-product-price="19"
+            >
+              Add to cart
+            </button>
+            <a href="shop.html#jumper-01" class="btn-outline">View details</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-shell">
+      <div>© 2025 Thrift Haven. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="about.html">About</a>
+        <a href="support.html">Support</a>
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SIMPLE CART LOGIC (shared later across pages) -->
+  <script>
+    function getCart() {
+      try {
+        const stored = localStorage.getItem("thriftHavenCart");
+        return stored ? JSON.parse(stored) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveCart(cart) {
+      localStorage.setItem("thriftHavenCart", JSON.stringify(cart));
+    }
+
+    function updateCartCount() {
+      const cart = getCart();
+      const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+      const el = document.getElementById("cart-count");
+      if (el) el.textContent = total;
+    }
+
+    function addToCart(product) {
+      const cart = getCart();
+      const existing = cart.find((item) => item.id === product.id);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({ ...product, quantity: 1 });
+      }
+      saveCart(cart);
+      updateCartCount();
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // initial count
+      updateCartCount();
+
+      // wire up add-to-cart buttons
+      document.querySelectorAll(".btn-add").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const product = {
+            id: btn.dataset.productId,
+            name: btn.dataset.productName,
+            price: Number(btn.dataset.productPrice),
+          };
+          addToCart(product);
+          btn.textContent = "Added ✓";
+          setTimeout(() => {
+            btn.textContent = "Add to cart";
+          }, 1000);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Reset Password | Thrift Haven</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  body{
+    font-family:system-ui;background:#f7f1e8;
+    display:flex;flex-direction:column;min-height:100vh;
+    margin:0;padding:0;color:#1f2933;
+    background:radial-gradient(circle at top left,#fcf5eb 0,#f7f1e8 42%,#f3ece1 100%);
+  }
+  a{text-decoration:none;color:#1d4ed8;}
+  .shell{max-width:1120px;margin:0 auto;padding:40px 20px;display:flex;justify-content:center;}
+  .card{
+    max-width:420px;width:100%;background:white;padding:26px;border-radius:20px;
+    border:1px solid #e5e7eb;box-shadow:0 15px 40px rgba(0,0,0,0.08);
+  }
+  input{
+    width:100%;padding:10px;border-radius:10px;border:1px solid #ddd;margin-bottom:12px;background:#fff9f0;
+  }
+  button{
+    width:100%;padding:10px;border:none;border-radius:999px;background:#3a0f14;color:white;font-size:15px;
+  }
+  footer{text-align:center;margin-top:auto;background:#2c0735;color:white;padding:14px;}
+</style>
+</head>
+
+<body>
+
+<header style="background:rgba(247,241,232,0.8);border-bottom:1px solid #ddd;">
+  <div style="max-width:1120px;margin:auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div style="width:32px;height:32px;background:#111827;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;">TH</div>
+      <strong>Thrift Haven</strong>
+    </div>
+    <a href="signin.html" style="color:#3a0f14;">Back to Sign In</a>
+  </div>
+</header>
+
+<section class="shell">
+  <div class="card">
+    <h2>Reset your password</h2>
+    <p style="color:#6b7280;margin-bottom:16px;">
+      Enter your email address. If it exists, we’ll send a reset link.
+    </p>
+
+    <form id="reset-form">
+      <input id="email" type="email" placeholder="Your email address" required />
+      <button type="submit">Send reset link</button>
+    </form>
+
+    <p id="msg" style="margin-top:12px;font-size:14px;color:#1f2933;"></p>
+  </div>
+</section>
+
+<footer>© 2025 Thrift Haven. All rights reserved.</footer>
+
+<script>
+document.getElementById("reset-form").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const email = document.getElementById("email").value.trim().toLowerCase();
+  const users = JSON.parse(localStorage.getItem("thriftHavenUsers") || "[]");
+  const msg = document.getElementById("msg");
+
+  if(!users.some(u => u.email === email)){
+    msg.textContent = "If this email exists, a reset link has been sent.";
+    return;
+  }
+
+  // Save “reset token”
+  localStorage.setItem("thriftResetEmail", email);
+
+  msg.textContent = "We’ve emailed you a reset link (simulation). Please check your inbox.";
+
+  // For demo: take user straight to a simple reset page in 2 sec
+  setTimeout(()=>{
+    window.location.href = "reset-password.html";
+  },2000);
+});
+</script>
+
+</body>
+</html>
