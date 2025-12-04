@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Shop | Thrift Haven</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    :root {
+      --bg: #f7f1e8;
+      --bg-soft: #f3ece1;
+      --card-bg: #fff9f0;
+      --card-strong: #ffffff;
+      --primary: #3a0f14;
+      --primary-soft: #f3e6e9;
+      --text-main: #1f2933;
+      --text-soft: #6b7280;
+      --pill-bg: #fdf7ee;
+      --border-subtle: #e5ded3;
+      --radius-lg: 20px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.14);
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      --transition-fast: 160ms ease-out;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-sans);
+      background: radial-gradient(circle at top left, #fcf5eb 0, var(--bg) 42%, #f3ece1 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .hidden { display: none !important; }
+
+    /* HEADER / NAVBAR ----------------------------------------- */
+
+    header {
+      width: 100%;
+      border-bottom: 1px solid rgba(209, 213, 219, 0.4);
+      background: rgba(247, 241, 232, 0.8);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .nav-shell {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 14px 20px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: #111827;
+      color: #f9fafb;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-text-main {
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 14px;
+      color: #4b5563;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 3px;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width var(--transition-fast);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pill-icon {
+      border-radius: var(--radius-pill);
+      padding: 7px 11px;
+      background: var(--pill-bg);
+      border: 1px solid rgba(209, 213, 219, 0.8);
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pill-icon span.icon { font-size: 15px; }
+
+    .cart-pill { cursor: pointer; position: relative; }
+
+    .cart-count {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      background: var(--primary);
+      color: #f9fafb;
+      border-radius: var(--radius-pill);
+      padding: 1px 6px;
+      font-size: 11px;
+      min-width: 18px;
+      text-align: center;
+    }
+
+    .pill-signin {
+      border-radius: var(--radius-pill);
+      padding: 8px 18px;
+      border: none;
+      background: var(--primary);
+      color: #f9fafb;
+      font-size: 14px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 10px 20px rgba(58, 15, 20, 0.35);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+        filter var(--transition-fast);
+    }
+
+    .pill-signin:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.03);
+      box-shadow: 0 14px 26px rgba(58, 15, 20, 0.45);
+    }
+
+    .pill-signin:active {
+      transform: translateY(0);
+      box-shadow: 0 8px 18px rgba(58, 15, 20, 0.3);
+      filter: brightness(0.97);
+    }
+
+    /* MAIN ---------------------------------------------------- */
+
+    main { flex: 1; }
+
+    .shell {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 28px 20px 32px;
+    }
+
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .page-header h1 {
+      font-size: 24px;
+      margin-bottom: 4px;
+    }
+
+    .page-header p {
+      font-size: 14px;
+      color: var(--text-soft);
+      max-width: 32rem;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    .filter-pill {
+      border-radius: var(--radius-pill);
+      padding: 7px 14px;
+      border: 1px solid rgba(209, 213, 219, 0.9);
+      background: #fff9f0;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background var(--transition-fast), color var(--transition-fast),
+        border-color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .filter-pill.active {
+      background: #111827;
+      color: #f9fafb;
+      border-color: #111827;
+      transform: translateY(-1px);
+    }
+
+    /* CATEGORY SECTIONS -------------------------------------- */
+
+    .category-section {
+      margin-top: 26px;
+    }
+
+    .category-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      gap: 10px;
+    }
+
+    .category-title {
+      font-size: 18px;
+    }
+
+    .category-sub {
+      font-size: 13px;
+      color: var(--text-soft);
+    }
+
+    .category-badge {
+      font-size: 12px;
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      background: #ffffff;
+      border: 1px solid rgba(209, 213, 219, 0.9);
+    }
+
+    /* PRODUCT GRID ------------------------------------------- */
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .product-card {
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(229, 231, 235, 0.9);
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.05);
+    }
+
+    .product-image {
+      border-radius: 14px;
+      background: linear-gradient(135deg, #e5e7eb, #f9fafb);
+      height: 140px;
+      margin-bottom: 4px;
+    }
+
+    .product-title {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .product-meta {
+      font-size: 12px;
+      color: var(--text-soft);
+      display: flex;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .product-meta span { white-space: nowrap; }
+
+    .product-price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+      margin-top: 4px;
+      font-size: 13px;
+    }
+
+    .price { font-weight: 600; }
+
+    .badge {
+      font-size: 11px;
+      padding: 4px 7px;
+      border-radius: 999px;
+      background: #f3e8ff;
+      color: #4b5563;
+    }
+
+    .product-actions {
+      margin-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .btn-add {
+      flex: 1;
+      border-radius: var(--radius-pill);
+      padding: 7px 10px;
+      font-size: 12px;
+      border: none;
+      cursor: pointer;
+      background: var(--primary);
+      color: #f9fafb;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+        filter var(--transition-fast);
+      box-shadow: 0 8px 18px rgba(58, 15, 20, 0.25);
+    }
+
+    .btn-add:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.03);
+      box-shadow: 0 12px 22px rgba(58, 15, 20, 0.35);
+    }
+
+    .btn-outline {
+      border-radius: var(--radius-pill);
+      padding: 7px 12px;
+      font-size: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      background: #ffffff;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .btn-outline:hover {
+      background: #f9fafb;
+      transform: translateY(-1px);
+    }
+
+    /* FOOTER (shared) ---------------------------------------- */
+
+    footer {
+      border-top: 1px solid rgba(209, 213, 219, 0.6);
+      background: #2c0735;
+      color: #f9fafb;
+      margin-top: 24px;
+    }
+
+    .footer-shell {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #e5e7eb;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* SIZE GUIDE MODAL --------------------------------------- */
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+    }
+
+    .modal {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 18px 20px 16px;
+      max-width: 380px;
+      width: 100%;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(229, 231, 235, 0.9);
+      font-size: 13px;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .modal-header h2 {
+      font-size: 16px;
+    }
+
+    .modal-close {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 1;
+      padding: 0 4px;
+    }
+
+    .size-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 6px;
+      margin-bottom: 10px;
+    }
+
+    .size-table th,
+    .size-table td {
+      border-bottom: 1px solid #e5e7eb;
+      padding: 6px 4px;
+      text-align: left;
+      font-size: 12px;
+    }
+
+    .size-table th {
+      font-weight: 600;
+      color: #374151;
+    }
+
+    .modal small {
+      color: var(--text-soft);
+      font-size: 11px;
+    }
+
+    /* RESPONSIVE --------------------------------------------- */
+
+    @media (max-width: 900px) {
+      .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-shell {
+        flex-wrap: wrap;
+        gap: 10px 14px;
+      }
+      .nav-links { display: none; }
+      .product-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .footer-shell {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header>
+    <div class="nav-shell">
+      <div class="nav-left">
+        <a href="index.html" class="brand-mark">TH</a>
+        <div class="brand-text-main">Thrift Haven</div>
+      </div>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="nav-right">
+        <a href="cart.html" class="pill-icon cart-pill" aria-label="Cart">
+          <span class="icon">🛒</span>
+          <span>Cart</span>
+          <span class="cart-count" id="cart-count">0</span>
+        </a>
+        <a href="signin.html" class="pill-signin">Sign In</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <section class="shell">
+      <header class="page-header">
+        <div>
+          <h1>Shop all pieces</h1>
+          <p>
+            Browse every curated thrifted find from our verified sellers. Limited pieces –
+            once it’s gone, it’s gone.
+          </p>
+        </div>
+        <div class="filters">
+          <button class="filter-pill active" data-filter="all">All</button>
+          <button class="filter-pill" data-filter="new">New in</button>
+          <button class="filter-pill" data-filter="denim">Denim</button>
+          <button class="filter-pill" data-filter="outerwear">Outerwear</button>
+          <button class="filter-pill" data-filter="accessories">Accessories</button>
+        </div>
+      </header>
+
+      <!-- DENIM -->
+      <section class="category-section" id="denim">
+        <div class="category-header">
+          <div>
+            <h2 class="category-title">Vintage denim</h2>
+            <p class="category-sub">
+              High–rise, relaxed fits and statement washes – all pre-loved, never basic.
+            </p>
+          </div>
+          <div class="category-badge">Best for everyday wear</div>
+        </div>
+
+        <div class="product-grid">
+          <article class="product-card" id="jeans-01" data-tags="denim,new">
+            <div class="product-image"></div>
+            <div class="product-title">Vintage Wash Mom Jeans</div>
+            <div class="product-meta">
+              <span>Size M</span>
+              <span>High waist</span>
+            </div>
+            <div class="product-price-row">
+              <span class="price">£24</span>
+              <span class="badge">4.8★</span>
+            </div>
+            <div class="product-actions">
+              <button
+                class="btn-add"
+                data-product-id="jeans-01"
+                data-product-name="Vintage Wash Mom Jeans"
+                data-product-price="24"
+              >
+                Add to cart
+              </button>
+              <button class="btn-outline size-guide-btn" data-guide="denim">
+                Size guide
+              </button>
+            </div>
+          </article>
+
+          <article class="product-card" data-tags="denim">
+            <div class="product-image"></div>
+            <div class="product-title">Light Wash Straight Jeans</div>
+            <div class="product-meta">
+              <span>Size S</span>
+              <span>Mid rise</span>
+            </div>
+            <div class="product-price-row">
+              <span class="price">£21</span>
+              <span class="badge">4.6★</span>
+            </div>
+            <div class="product-actions">
+              <button
+                class="btn-add"
+                data-product-id="jeans-02"
+                data-product-name="Light Wash Straight Jeans"
+                data-product-price="21"
+              >
+                Add to cart
+              </button>
+              <button class="btn-outline size-guide-btn" data-guide="denim">
+                Size guide
+              </button>
+            </div>
+          </article>
+
+          <article class="product-card" data-tags="denim">
+            <div class="product-image"></div>
+            <div class="product-title">Cropped Raw Hem Jeans</div>
+            <div class="product-meta">
+              <span>Size L</span>
+              <span>Relaxed fit</span>
+            </div>
+            <div class="product-price-row">
+              <span class="price">£23</span>
+              <span class="badge">4.7★</span>
+            </div>
+            <div class="product-actions">
+              <button
+                class="btn-add"
+                data-product-id="jeans-03"
+                data-product-name="Cropped Raw Hem Jeans"
+                data-product-price="23"
+              >
+                Add to cart
+              </button>
+              <button class="btn-outline size-guide-btn" data-guide="denim">
+                Size guide
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- BAGS / ACCESSORIES -->
+      <section class="category-section" id="bags">
+        <div class="category-header">
+          <div>
+            <h2 class="category-title">Statement bags</h2>
+            <p class="category-sub">
+              Tote, crossbody or mini – one detail-packed bag to elevate every outfit.
+            </p>
+          </div>
+          <div class="category-badge">Low–impact materials</div>
+        </div>
+
+        <div class="product-grid">
+          <article class="product-card" id="bag-01" data-tags="accessories,new">
+            <div class="product-image"></div>
+            <div class="product-title">Minimal Canvas Tote</div>
+            <div class="product-meta">
+              <span>Organic cotton</span>
+              <span>Eco pick</span>
+            </div>
+            <div class="product-price-row">
+              <span class="price">£14</span>
+              <span class="badge">4.7★</span>
+            </div>
+            <div class="product-actions">
+              <button
+                class="btn-add"
+                data-product-id="bag-01"
+                data-product-name="Minimal Canvas Tote"
+                data-product-price="14"
+              >
+                Add to cart
+              </button>
+              <button class="btn-outline">More details</button>
+            </div>
+          </article>
+
+          <article class="product-card" data-tags="accessories">
+            <div class="product-image"></div>
+            <div class="product-title">Structured Faux Leather Bag</div>
+            <div class="product-meta">
+              <span>Chocolate brown</span>
+              <span>Crossbody</span>
+            </div>
+            <div class="product-price-row">
+              <span class="price">£22</span>
+              <span class="badge">4.9★</span>
+            </div>
+            <div class="product-actions">
+              <button
+                class="btn-add"
+                data-product-id="bag-02"
+                data-product-name="Structured Faux Leather Bag"
+                data-product-price="22"
+              >
+                Add to cart
+              </button>
+              <button class="btn-outline">More details</button>
+            </div>
+          </article>
+
+          <article class="product-card" data-tags="accessories">
+            <div class="product-image"></div>
+            <div class="product-title">Mini Checkerboard Shoulder Bag</div>
+            <div class="product-meta">
+              <span>Patterned</span>
+              <span>Y2K vibe</span>
+            </div>
+            <div class="product-price-row">
+              <span class="price">£18</span>
+              <span class="badge">4.5★</span>
+            </div>
+            <div class="product-actions">
+              <button
+                class="btn-add"
+                data-product-id="bag-03"
+                data-product-name="Mini Checkerboard Shoulder Bag"
+                data-product-price="18"
+              >
+                Add to cart
+              </button>
+              <button class="btn-outline">More details</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- SHIRTS / KNITWEAR -->
+      <section class="category-section" id="shirts">
+        <div class="category-header">
+          <div>
+            <h2 class="category-title">Curated shirts & knits</h2>
+            <p class="category-sub">
+              Oversized, tailored and printed pieces that make “just a shirt” feel styled.
+            </p>
+          </div>
+          <div class="category-badge">Mix &amp; match staples</div>
+        </div>
+
+        <div class="product-grid">
+          <article class="product-card" id="jumper-01" data-tags="outerwear,new">
+            <div class="product-image"></div>
+            <div class="product-title">Chunky Knit Jumper</div>
+            <div class="product-meta">
+              <span>Size L</span>
+              <span>Wool blend</span>
+            </div>
+            <div class="product-price-row">
+              <span class="price">£19</span>
+              <span class="badge">5.0★</span>
+            </div>
+            <div class="product-actions">
+              <button
+                class="btn-add"
+                data-product-id="jumper-01"
+                data-product-name="Chunky Knit Jumper"
+                data-product-price="19"
+              >
+                Add to cart
+              </button>
+              <button class="btn-outline size-guide-btn" data-guide="tops">
+                Size guide
+              </button>
+            </div>
+          </article>
+
+          <article class="product-card" data-tags="outerwear">
+            <div class="product-image"></div>
+            <div class="product-title">Oversized Linen Shirt</div>
+            <div class="product-meta">
+              <span>Size M</span>
+              <span>100% linen</span>
+            </div>
+            <div class="product-price-row">
+              <span class="price">£20</span>
+              <span class="badge">4.8★</span>
+            </div>
+            <div class="product-actions">
+              <button
+                class="btn-add"
+                data-product-id="shirt-01"
+                data-product-name="Oversized Linen Shirt"
+                data-product-price="20"
+              >
+                Add to cart
+              </button>
+              <button class="btn-outline size-guide-btn" data-guide="tops">
+                Size guide
+              </button>
+            </div>
+          </article>
+
+          <article class="product-card" data-tags="outerwear">
+            <div class="product-image"></div>
+            <div class="product-title">Striped Button-Up Shirt</div>
+            <div class="product-meta">
+              <span>Size S</span>
+              <span>Relaxed fit</span>
+            </div>
+            <div class="product-price-row">
+              <span class="price">£17</span>
+              <span class="badge">4.6★</span>
+            </div>
+            <div class="product-actions">
+              <button
+                class="btn-add"
+                data-product-id="shirt-02"
+                data-product-name="Striped Button-Up Shirt"
+                data-product-price="17"
+              >
+                Add to cart
+              </button>
+              <button class="btn-outline size-guide-btn" data-guide="tops">
+                Size guide
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- CAPSULE -->
+      <section class="category-section" id="capsule">
+        <div class="category-header">
+          <div>
+            <h2 class="category-title">Capsule picks</h2>
+            <p class="category-sub">
+              Build a small, versatile wardrobe you actually wear – every piece earns its space.
+            </p>
+          </div>
+          <div class="category-badge">Curated capsule edit</div>
+        </div>
+
+        <div class="product-grid">
+          <article class="product-card" data-tags="outerwear,new">
+            <div class="product-image"></div>
+            <div class="product-title">Classic Trench Coat</div>
+            <div class="product-meta">
+              <span>Size M</span>
+              <span>Water resistant</span>
+            </div>
+            <div class="product-price-row">
+              <span class="price">£39</span>
+              <span class="badge">4.8★</span>
+            </div>
+            <div class="product-actions">
+              <button
+                class="btn-add"
+                data-product-id="capsule-03"
+                data-product-name="Classic Trench Coat"
+                data-product-price="39"
+              >
+                Add to cart
+              </button>
+              <button class="btn-outline size-guide-btn" data-guide="outerwear">
+                Size guide
+              </button>
+            </div>
+          </article>
+
+          <article class="product-card" data-tags="outerwear">
+            <div class="product-image"></div>
+            <div class="product-title">Tailored Black Trousers</div>
+            <div class="product-meta">
+              <span>Size M</span>
+              <span>Full length</span>
+            </div>
+            <div class="product-price-row">
+              <span class="price">£26</span>
+              <span class="badge">5.0★</span>
+            </div>
+            <div class="product-actions">
+              <button
+                class="btn-add"
+                data-product-id="capsule-01"
+                data-product-name="Tailored Black Trousers"
+                data-product-price="26"
+              >
+                Add to cart
+              </button>
+              <button class="btn-outline size-guide-btn" data-guide="bottoms">
+                Size guide
+              </button>
+            </div>
+          </article>
+
+          <article class="product-card" data-tags="outerwear">
+            <div class="product-image"></div>
+            <div class="product-title">Boxy White Tee</div>
+            <div class="product-meta">
+              <span>Organic cotton</span>
+              <span>Everyday essential</span>
+            </div>
+            <div class="product-price-row">
+              <span class="price">£12</span>
+              <span class="badge">4.9★</span>
+            </div>
+            <div class="product-actions">
+              <button
+                class="btn-add"
+                data-product-id="capsule-02"
+                data-product-name="Boxy White Tee"
+                data-product-price="12"
+              >
+                Add to cart
+              </button>
+              <button class="btn-outline size-guide-btn" data-guide="tops">
+                Size guide
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <!-- FOOTER (same for all pages) -->
+  <footer>
+    <div class="footer-shell">
+      <div>© 2025 Thrift Haven. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="about.html">About</a>
+        <a href="support.html">Support</a>
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CART + FILTERS + SIZE GUIDE LOGIC -->
+  <script>
+    // ----- CART -----
+    function getCart() {
+      try {
+        const stored = localStorage.getItem("thriftHavenCart");
+        return stored ? JSON.parse(stored) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveCart(cart) {
+      localStorage.setItem("thriftHavenCart", JSON.stringify(cart));
+    }
+
+    function updateCartCount() {
+      const cart = getCart();
+      const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+      const el = document.getElementById("cart-count");
+      if (el) el.textContent = total;
+    }
+
+    function addToCart(product) {
+      const cart = getCart();
+      const existing = cart.find((item) => item.id === product.id);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({ ...product, quantity: 1 });
+      }
+      saveCart(cart);
+      updateCartCount();
+    }
+
+    // ----- FILTERS -----
+    function setupFilters() {
+      const buttons = document.querySelectorAll(".filter-pill");
+      const cards = document.querySelectorAll(".product-card");
+
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          buttons.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+
+          const filter = btn.dataset.filter;
+
+          cards.forEach((card) => {
+            const tags = (card.dataset.tags || "").split(",");
+            if (
+              filter === "all" ||
+              tags.includes(filter)
+            ) {
+              card.classList.remove("hidden");
+            } else if (filter === "new" && tags.includes("new")) {
+              card.classList.remove("hidden");
+            } else {
+              card.classList.add("hidden");
+            }
+          });
+
+          window.scrollTo({ top: document.querySelector(".shell").offsetTop - 60, behavior: "smooth" });
+        });
+      });
+    }
+
+    // ----- SIZE GUIDE MODAL -----
+    function showSizeGuide(type) {
+      const guides = {
+        denim: [
+          ["UK 6–8", "Waist 24–26\"", "Hips 34–36\""],
+          ["UK 10–12", "Waist 27–29\"", "Hips 37–39\""],
+          ["UK 14–16", "Waist 30–33\"", "Hips 40–43\""],
+        ],
+        tops: [
+          ["UK 6–8", "Bust 30–33\"", "Regular fit"],
+          ["UK 10–12", "Bust 34–37\"", "Relaxed fit"],
+          ["UK 14–16", "Bust 38–41\"", "Boxy fit"],
+        ],
+        bottoms: [
+          ["UK 8", "Waist 26–27\"", "Inside leg 30\""],
+          ["UK 10–12", "Waist 28–30\"", "Inside leg 30–31\""],
+          ["UK 14", "Waist 31–33\"", "Inside leg 31\""],
+        ],
+        outerwear: [
+          ["UK S", "Best for UK 6–8", "Layer over 1 knit"],
+          ["UK M", "Best for UK 10–12", "Layer over 2 knits"],
+          ["UK L", "Best for UK 14–16", "Roomy fit"],
+        ],
+      };
+
+      const rows = guides[type] || guides["tops"];
+
+      const backdrop = document.createElement("div");
+      backdrop.className = "modal-backdrop";
+      backdrop.innerHTML = `
+        <div class="modal" role="dialog" aria-modal="true">
+          <div class="modal-header">
+            <h2>Size guide</h2>
+            <button class="modal-close" aria-label="Close">×</button>
+          </div>
+          <table class="size-table">
+            <thead>
+              <tr>
+                <th>Label</th>
+                <th>Measurements</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rows
+                .map(
+                  (r) =>
+                    <tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>
+                )
+                .join("")}
+            </tbody>
+          </table>
+          <small>
+            Measurements are approximate and based on how we’d style each piece.
+            For oversized fits, size up for extra slouch.
+          </small>
+        </div>
+      `;
+
+      document.body.appendChild(backdrop);
+
+      const close = () => backdrop.remove();
+      backdrop.addEventListener("click", (e) => {
+        if (e.target === backdrop) close();
+      });
+      backdrop.querySelector(".modal-close").addEventListener("click", close);
+    }
+
+    function setupSizeGuides() {
+      document.querySelectorAll(".size-guide-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const type = btn.dataset.guide || "tops";
+          showSizeGuide(type);
+        });
+      });
+    }
+
+    // ----- INIT -----
+    document.addEventListener("DOMContentLoaded", () => {
+      updateCartCount();
+
+      document.querySelectorAll(".btn-add").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const product = {
+            id: btn.dataset.productId,
+            name: btn.dataset.productName,
+            price: Number(btn.dataset.productPrice),
+          };
+          addToCart(product);
+          btn.textContent = "Added ✓";
+          setTimeout(() => (btn.textContent = "Add to cart"), 1000);
+        });
+      });
+
+      setupFilters();
+      setupSizeGuides();
+    });
+  </script>
+</body>
+</html>
