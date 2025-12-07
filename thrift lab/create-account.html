@@ -42,6 +42,115 @@
     color:white;border-radius:var(--pill);cursor:pointer;font-size:15px;
   }
   footer{text-align:center;margin-top:auto;padding:16px;background:#2c0735;color:white;}
+  /* FOOTER STYLE – Professional 4-column layout */
+
+.footer-section {
+  background: linear-gradient(90deg, #2e032f 0%, #4c0835 50%, #2a0b1f 100%);
+  padding: 50px 20px 30px;
+  color: #fff;
+  margin-top: 40px;
+}
+
+.footer-columns {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+
+.footer-col h4 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.footer-col a {
+  display: block;
+  color: #e8e8e8;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.footer-col a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* BRAND COLUMN */
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-logo {
+  width: 40px;
+  height: 40px;
+  background: #ffffff40;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.footer-name {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.footer-desc {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* SOCIALS */
+.footer-socials {
+  margin-top: 14px;
+  display: flex;
+  gap: 14px;
+}
+
+.social-icon {
+  width: 38px;
+  height: 38px;
+  background: #ffffff25;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: .2s;
+}
+
+.social-icon:hover {
+  background: #ffffff50;
+  transform: translateY(-3px);
+}
+
+/* BOTTOM TEXT */
+.footer-bottom {
+  max-width: 1120px;
+  margin: 40px auto 0;
+  padding-top: 14px;
+  border-top: 1px solid #ffffff30;
+  text-align: center;
+  font-size: 13px;
+}
+
+/* Mobile */
+@media (max-width: 800px) {
+  .footer-columns {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 500px) {
+  .footer-columns {
+    grid-template-columns: 1fr;
+  }
+}
 </style>
 </head>
 
@@ -76,8 +185,6 @@
   </div>
 </section>
 
-<footer>© 2025 Thrift Haven. All rights reserved.</footer>
-
 <script>
 document.getElementById("signup-form").addEventListener("submit", function(e){
   e.preventDefault();
@@ -101,6 +208,87 @@ document.getElementById("signup-form").addEventListener("submit", function(e){
   window.location.href = "signin.html";
 });
 </script>
+<footer class="footer-section">
+  <div class="footer-columns">
 
+    <!-- Column 1: Brand -->
+    <div class="footer-col">
+      <div class="footer-brand">
+        <div class="footer-logo">TH</div>
+        <div class="footer-name">Thrift Haven</div>
+      </div>
+
+      <p class="footer-desc">
+        A curated thrift marketplace built for conscious shoppers who want style without waste.
+      </p>
+
+      <!-- SOCIAL ICONS -->
+      <div class="footer-socials">
+
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/iya_sumu?igsh=MWN5aHFzdXQ5aHdlcg%3D%3D&utm_source=qr"
+           target="_blank" aria-label="Instagram" class="social-icon">
+          <svg width="22" height="22" fill="none" stroke="white" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <rect x="2" y="2" width="20" height="20" rx="5"></rect>
+            <circle cx="12" cy="12" r="4"></circle>
+            <circle cx="17" cy="7" r="1.3" fill="white"></circle>
+          </svg>
+        </a>
+
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/share/17UuuoeSNk/?mibextid=wwXIfr"
+           target="_blank" aria-label="Facebook" class="social-icon">
+          <svg width="22" height="22" fill="white" viewBox="0 0 24 24">
+            <path d="M22 12a10 10 0 1 0-11.5 9.9v-7H8v-3h2.5V9.5c0-2 1.3-4 4-4
+                     1.2 0 2 .1 2 .1v2.7h-1.1c-1.1 0-1.4.7-1.4 1.4V12H18l-.5 3h-2.6v7
+                     A10 10 0 0 0 22 12z"/>
+          </svg>
+        </a>
+
+        <!-- Twitter/X (Using Instagram link as per your request) -->
+        <a href="https://www.instagram.com/iya_sumu?igsh=MWN5aHFzdXQ5aHdlcg%3D%3D&utm_source=qr"
+           target="_blank" aria-label="Twitter" class="social-icon">
+          <svg width="22" height="22" fill="white" viewBox="0 0 24 24">
+            <path d="M18 2h-3l-3.6 5.3L8 2H2l6.7 9.7L2.3 22h3l4.2-6.2L14 22h6l-7.1-10.3L18 2z"/>
+          </svg>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- Column 2: Shop -->
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <a href="shop.html#new">New in</a>
+      <a href="shop.html#trending">Trending now</a>
+      <a href="shop.html#denim">Vintage edits</a>
+      <a href="shop.html#capsule">£20 and under</a>
+    </div>
+
+    <!-- Column 3: About -->
+    <div class="footer-col">
+      <h4>About</h4>
+      <a href="about.html">Our story</a>
+      <a href="about.html#sustainability">Sustainability</a>
+      <a href="blog.html">Journal</a>
+    </div>
+
+    <!-- Column 4: Support -->
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="contact.html">Contact us</a>
+      <a href="contact.html#faq">FAQs</a>
+      <a href="contact.html#shipping">Shipping & returns</a>
+      <a href="contact.html#seller">Seller help</a>
+    </div>
+
+  </div>
+
+  <!-- Bottom strip -->
+  <div class="footer-bottom">
+    © 2025 Thrift Haven. All rights reserved.
+  </div>
+</footer>
 </body>
 </html>
