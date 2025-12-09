@@ -273,7 +273,7 @@ if(!articles[id]){
   const a = articles[id];
   document.getElementById("article-title").textContent = a.title;
   document.getElementById("article-meta").textContent = a.meta;
-  document.getElementById("article-body").innerHTML = a.body.map(p=><p>${p}</p>).join("");
+  document.getElementById("article-body").innerHTML = a.body.map(p=>`<p>${p}</p>`).join("");
 }
 </script>
 <footer class="footer-section">
@@ -355,7 +355,7 @@ if(!articles[id]){
 
   <!-- Bottom strip -->
   <div class="footer-bottom">
-    © 2025 Thrift Haven. All rights reserved.
+    ©️ 2025 Thrift Haven. All rights reserved.
   </div>
 </footer>
 </body>
