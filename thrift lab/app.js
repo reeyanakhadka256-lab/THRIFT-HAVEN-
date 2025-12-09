@@ -65,7 +65,7 @@ function renderCartPage() {
         <div class="cart-thumb">
           ${
             item.image
-              ? <img src="${item.image}" alt="${item.name}">
+              ? `<img src="${item.image}" alt="${item.name}">`
               : ""
           }
         </div>
