@@ -334,14 +334,17 @@ a {
   gap: 8px;
 }
 
-.product-thumb {
+/* 👇 use same styling for product-thumb and product-image */
+.product-thumb,
+.product-image {
   border-radius: 14px;
   overflow: hidden;
   background: #e5e7eb;
-  height: 150px;
+  height: 150px;              /* change to 200px if you want taller cards */
 }
 
-.product-thumb img {
+.product-thumb img,
+.product-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
